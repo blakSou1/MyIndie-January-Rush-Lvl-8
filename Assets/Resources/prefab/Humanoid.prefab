@@ -64,7 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPosition: {x: 0, y: 0, z: 0}
-  maxVelocity: 1
+  entity: {fileID: 0}
+  maxVelocity: 10
 --- !u!222 &8376147903535767356
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -15,10 +15,8 @@ public class MoveableBalatro : MoveableBase
 
         while (isMoving && Vector2.Distance(transform.position, targetPosition) > arrivalThreshold)
         {
-            // Предполагая, что realDt является дельтой времени между кадрами
             float realDt = Mathf.Clamp(Time.smoothDeltaTime, 1 / 50f, 1 / 100f);
         
-            // Вычисляем затухание и максимальную скорость
             float expTimeXY = Mathf.Exp(-50 * realDt);
 
             MoveXY(realDt, expTimeXY);
@@ -26,7 +24,8 @@ public class MoveableBalatro : MoveableBase
             yield return null;
         }
 
-        //TODO move next room
+        int index = G.roomManager.rooms.IndexOf(entity.state.room);
+        G.roomManager.rooms[index + 1].AddEntity(entity);
     }
 
     private void MoveXY(float dt, float expTimeXY)
@@ -92,6 +91,7 @@ public class MoveableBalatro : MoveableBase
 public class MoveableBase : ManagedBehaviour
 {
     public Vector3 targetPosition;
+    public Entity entity;
 
     public virtual IEnumerator Move(Vector3 target)
     {

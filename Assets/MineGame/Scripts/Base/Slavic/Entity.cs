@@ -20,5 +20,6 @@ public class Entity : MonoBehaviour
         state.view = this;
 
         state.moveable = GetComponent<MoveableBase>();
+        state.moveable.entity = this;
     }
 }
