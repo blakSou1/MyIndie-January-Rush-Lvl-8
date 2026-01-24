@@ -5,7 +5,7 @@ public class RoomBase
 
     public RoomBase()
     {
-        prefab = Framefork.Load<Room>("prefab/" + "name");
+        prefab = Framefork.Load<Room>("prefabRoom/" + "name");
         G.roomManager.roomsEntity.Add(this);
     }
 
