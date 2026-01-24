@@ -1,20 +1,33 @@
+using System.Collections;
 using UnityEngine;
 
 public class MoveableBalatro : MoveableBase
 {
     private Vector2 velocity; // Текущая скорость
-    private float maxVelocity; // Максимальная скорость
+    public float maxVelocity; // Максимальная скорость
 
-    private void Update()
+    public override IEnumerator Move(Vector3 target)
     {
-        // Предполагая, что realDt является дельтой времени между кадрами
-        float realDt = Mathf.Clamp(Time.smoothDeltaTime, 1 / 50f, 1 / 100f);
-        
-        // Вычисляем затухание и максимальную скорость
-        float expTimeXY = Mathf.Exp(-50 * realDt);
-        maxVelocity = 70 * realDt;
+        targetPosition = target;
 
-        MoveXY(realDt, expTimeXY);
+        bool isMoving = true;
+        float arrivalThreshold = 0.1f;
+
+        while (isMoving && Vector2.Distance(transform.position, targetPosition) > arrivalThreshold)
+        {
+            // Предполагая, что realDt является дельтой времени между кадрами
+            float realDt = Mathf.Clamp(Time.smoothDeltaTime, 1 / 50f, 1 / 100f);
+        
+            // Вычисляем затухание и максимальную скорость
+            float expTimeXY = Mathf.Exp(-50 * realDt);
+            maxVelocity = 70 * realDt;
+
+            MoveXY(realDt, expTimeXY);
+
+            yield return null;
+        }
+
+        //TODO move next room
     }
 
     private void MoveXY(float dt, float expTimeXY)
@@ -77,6 +90,10 @@ public class MoveableBase : ManagedBehaviour
 {
     public Vector3 targetPosition;
 
+    public virtual IEnumerator Move(Vector3 target)
+    {
+        return null;
+    }
     void OnDrawGizmos()
     {
         Gizmos.DrawSphere(targetPosition, 0.2f);
