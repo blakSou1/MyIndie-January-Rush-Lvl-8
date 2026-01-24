@@ -9,7 +9,33 @@ public static class Framefork
     {
         return Resources.Load<T>(path);
     }
-    
+
+    public static Room AddRoom(Type type)
+    {
+        var basicEntity = FindInheritedFrom(G.roomManager.roomsEntity, type.GetType());
+
+        basicEntity ??= Activator.CreateInstance(type) as RoomBase;
+
+        var state = new RoomeState
+        {
+            model = basicEntity
+        };
+
+        var instance = GameObject.Instantiate(basicEntity.prefab);
+        instance.SetState(state);
+        return instance;
+    }
+
+    public static RoomBase FindInheritedFrom(List<RoomBase> list, Type type)
+    {
+        foreach (var item in list)
+        {
+            if (item.GetType() == type)
+                return item;
+        }
+        return null;
+    }
+
     public static Entity AddEntity(Type type)
     {
         var basicEntity = FindInheritedFrom(G.run.entity, type.GetType());

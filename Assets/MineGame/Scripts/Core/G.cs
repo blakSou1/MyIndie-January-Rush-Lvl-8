@@ -23,6 +23,7 @@ public static class G
 
     //Объекты в игре
     public static Volume volume;
+    public static RoomManager roomManager;
 
 }
 
