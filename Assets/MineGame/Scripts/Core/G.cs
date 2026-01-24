@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -18,7 +19,7 @@ public static class G
 
     public static Inpyts inputs;
 
-    public static RunState run;
+    public static RunState run = new();
 
     //Объекты в игре
     public static Volume volume;
@@ -54,4 +55,6 @@ public class RunState
     public int drawSize = 3;
     public int health = 10;
     public int maxHealth = 10;
+
+    public List<EnemiesBase> entity = new();
 }
