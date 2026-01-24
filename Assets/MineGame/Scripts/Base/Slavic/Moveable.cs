@@ -11,9 +11,9 @@ public class MoveableBalatro : MoveableBase
         targetPosition = target;
 
         bool isMoving = true;
-        float arrivalThreshold = 0.1f;
+        float arrivalThreshold = 1f;
 
-        while (isMoving && Vector2.Distance(transform.position, targetPosition) > arrivalThreshold)
+        while (isMoving && Vector2.Distance(transform.localPosition, targetPosition) > arrivalThreshold)
         {
             float realDt = Mathf.Clamp(Time.smoothDeltaTime, 1 / 50f, 1 / 100f);
         
@@ -31,7 +31,7 @@ public class MoveableBalatro : MoveableBase
     private void MoveXY(float dt, float expTimeXY)
     {
         Vector2 T = targetPosition; // Целевая позиция
-        Vector2 currentPos = new(transform.position.x, transform.position.y); // Текущая позиция
+        Vector2 currentPos = new(transform.localPosition.x, transform.localPosition.y); // Текущая позиция
 
         float currentMaxVelocity = maxVelocity * dt;
 
@@ -45,7 +45,7 @@ public class MoveableBalatro : MoveableBase
             velocity = velocity.normalized * maxVelocity;
 
         // Обновляем позицию
-        transform.position += 100f * dt * (Vector3)velocity;
+        transform.localPosition += 100f * dt * (Vector3)velocity;
     }
 }
 
