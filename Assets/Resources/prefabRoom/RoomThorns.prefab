@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1536165282571376473}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 139.6, y: -1.7799997, z: -4.5450716}
+  m_LocalPosition: {x: 199, y: -1.7799997, z: -4.5450716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5679187765449389458}
   - component: {fileID: 5706794502012940399}
   m_Layer: 0
-  m_Name: RoomPlayer
+  m_Name: RoomThorns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3433962, g: 0.3433962, b: 0.3433962, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -27,9 +27,9 @@ public class Room : MonoBehaviour
 
         toClaim.state.room = this;
 
-        toClaim.transform.position = startPos.position;
+        toClaim.transform.SetParent(transform, false);
 
-        StartCoroutine(toClaim.state.moveable.Move(endPos.position));
+        toClaim.transform.position = startPos.position;
 
         state.model.EnterEntity(toClaim);
     }

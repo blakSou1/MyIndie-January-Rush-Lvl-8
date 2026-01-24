@@ -11,39 +11,41 @@ public class MoveableBalatro : MoveableBase
         targetPosition = target;
 
         bool isMoving = true;
-        float arrivalThreshold = 0.1f;
+        float arrivalThreshold = 1f;
 
-        while (isMoving && Vector2.Distance(transform.position, targetPosition) > arrivalThreshold)
+        while (isMoving && Vector2.Distance(transform.localPosition, targetPosition) > arrivalThreshold)
         {
-            // Предполагая, что realDt является дельтой времени между кадрами
             float realDt = Mathf.Clamp(Time.smoothDeltaTime, 1 / 50f, 1 / 100f);
         
-            // Вычисляем затухание и максимальную скорость
             float expTimeXY = Mathf.Exp(-50 * realDt);
-            maxVelocity = 70 * realDt;
 
             MoveXY(realDt, expTimeXY);
 
             yield return null;
         }
 
-        //TODO move next room
+        int index = G.roomManager.rooms.IndexOf(entity.state.room);
+        G.roomManager.rooms[index + 1].AddEntity(entity);
     }
 
     private void MoveXY(float dt, float expTimeXY)
     {
         Vector2 T = targetPosition; // Целевая позиция
-        Vector2 currentPos = new(transform.position.x, transform.position.y); // Текущая позиция
-        
+        Vector2 currentPos = new(transform.localPosition.x, transform.localPosition.y); // Текущая позиция
+
+        float currentMaxVelocity = maxVelocity * dt;
+
         // Применяем экспоненциальное затухание к скорости
         velocity = expTimeXY * velocity + (1 - expTimeXY) * 35 * dt * (T - currentPos);
+
+        velocity = Vector2.ClampMagnitude(velocity, currentMaxVelocity);
         
         // Ограничиваем скорость
         if (velocity.sqrMagnitude > maxVelocity * maxVelocity)
             velocity = velocity.normalized * maxVelocity;
 
         // Обновляем позицию
-        transform.position += 100f * dt * (Vector3)velocity;
+        transform.localPosition += 100f * dt * (Vector3)velocity;
     }
 }
 
@@ -89,6 +91,7 @@ public class MoveableBalatro : MoveableBase
 public class MoveableBase : ManagedBehaviour
 {
     public Vector3 targetPosition;
+    public Entity entity;
 
     public virtual IEnumerator Move(Vector3 target)
     {
