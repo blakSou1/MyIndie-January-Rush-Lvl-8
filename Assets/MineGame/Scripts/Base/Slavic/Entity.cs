@@ -4,6 +4,10 @@ public class EntityState
 {
     public EnemiesBase model;
     public Entity view;
+
+    public MoveableBase moveable;
+
+    public Room room;
 }
 
 public class Entity : MonoBehaviour
@@ -15,5 +19,6 @@ public class Entity : MonoBehaviour
         state = entityState;
         state.view = this;
 
+        state.moveable = GetComponent<MoveableBase>();
     }
 }
