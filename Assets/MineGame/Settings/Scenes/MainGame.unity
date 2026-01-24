@@ -3778,6 +3778,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms: []
+  camera:
+  - {fileID: 368520113}
+  - {fileID: 1491319271}
+  - {fileID: 1260972800}
+  - {fileID: 2046844892}
+  indexCamera: 0
 --- !u!4 &2079739702
 Transform:
   m_ObjectHideFlags: 0
