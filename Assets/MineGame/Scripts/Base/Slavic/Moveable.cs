@@ -20,7 +20,6 @@ public class MoveableBalatro : MoveableBase
         
             // Вычисляем затухание и максимальную скорость
             float expTimeXY = Mathf.Exp(-50 * realDt);
-            maxVelocity = 70 * realDt;
 
             MoveXY(realDt, expTimeXY);
 
@@ -34,9 +33,13 @@ public class MoveableBalatro : MoveableBase
     {
         Vector2 T = targetPosition; // Целевая позиция
         Vector2 currentPos = new(transform.position.x, transform.position.y); // Текущая позиция
-        
+
+        float currentMaxVelocity = maxVelocity * dt;
+
         // Применяем экспоненциальное затухание к скорости
         velocity = expTimeXY * velocity + (1 - expTimeXY) * 35 * dt * (T - currentPos);
+
+        velocity = Vector2.ClampMagnitude(velocity, currentMaxVelocity);
         
         // Ограничиваем скорость
         if (velocity.sqrMagnitude > maxVelocity * maxVelocity)

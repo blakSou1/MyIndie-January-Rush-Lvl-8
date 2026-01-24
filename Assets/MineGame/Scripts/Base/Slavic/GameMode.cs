@@ -6,7 +6,9 @@ public class GameMode : MonoBehaviour
     {
         Entity entity = Framefork.AddEntity(typeof(BasicEnemies));
 
+        entity.transform.SetParent(G.roomManager.rooms[0].transform, false);
 
+        G.roomManager.rooms[0].AddEntity(entity);
     }
 
     

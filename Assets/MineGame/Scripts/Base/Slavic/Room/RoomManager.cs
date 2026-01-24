@@ -6,13 +6,15 @@ public class RoomManager : MonoBehaviour
     public List<Room> rooms = new();
     public List<RoomBase> roomsEntity = new();
 
-    void Start()
+    void Awake()
     {
         G.roomManager = this;
 
-        RoomPlayer roomPlayer = new();
+        Room roomPlayer = Framefork.AddRoom(typeof(RoomPlayer));
 
-        //rooms.Add(roomPlayer);
+        roomPlayer.transform.SetParent(transform, false);
+
+        rooms.Add(roomPlayer);
     }
 
 }
