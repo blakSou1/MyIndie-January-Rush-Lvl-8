@@ -6,6 +6,7 @@ public class EntityState
     public Entity view;
 
     public MoveableBase moveable;
+    public Health health;
 
     public Room room;
 }
@@ -20,6 +21,7 @@ public class Entity : MonoBehaviour
         state.view = this;
 
         state.moveable = GetComponent<MoveableBase>();
+        state.health = GetComponent<Health>();
         state.moveable.entity = this;
     }
 }
