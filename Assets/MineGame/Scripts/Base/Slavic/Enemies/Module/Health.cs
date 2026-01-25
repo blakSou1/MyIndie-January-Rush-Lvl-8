@@ -1,5 +1,3 @@
-using DG.Tweening;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +21,7 @@ public class Health : MonoBehaviour
     {
         TextObject currentTextObject = null; 
         currentHealth -= damage;
+
         if(currentTextObject == null)
         {
             currentTextObject = Instantiate(_textObject, transform).GetComponentInChildren<TextObject>();

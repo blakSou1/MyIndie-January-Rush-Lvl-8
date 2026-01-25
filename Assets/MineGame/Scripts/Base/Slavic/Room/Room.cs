@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoomeState
 {
@@ -10,6 +11,8 @@ public class Room : MonoBehaviour
 {
     public List<Entity> objects = new();
 
+    public List<UnityEvent> events;
+
     public Transform startPos;
     public Transform endPos;
 
@@ -18,6 +21,7 @@ public class Room : MonoBehaviour
     public void SetState(RoomeState room)
     {
         state = room;
+        state.model.model = this;
     }
 
     public void AddEntity(Entity toClaim)
@@ -29,10 +33,16 @@ public class Room : MonoBehaviour
         objects.Add(toClaim);
 
         toClaim.transform.SetParent(transform, false);
+        toClaim.transform.SetSiblingIndex(3);
 
         toClaim.transform.position = startPos.position;
 
         state.model.EnterEntity(toClaim);
+    }
+
+    public void ActivationSkill()
+    {
+        state.model.ActivSkil();//TODO время востановления скила + визуальная обвязка
     }
 
     public void Release(Entity toClaim)

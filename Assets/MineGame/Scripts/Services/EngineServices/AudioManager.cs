@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour, IService
         SetMusicVolume(musicVolume);
         SetSoundVolume(soundVolume);
 
-        PlayMusic(R.Audio.NewMainMenu);
+        PlayMusic(R.Audio.Menu321);
     }
 
     public void SetMusicVolume(float value)

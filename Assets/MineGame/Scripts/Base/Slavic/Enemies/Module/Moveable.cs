@@ -5,6 +5,7 @@ public class MoveableBalatro : MoveableBase
 {
     private Vector2 velocity; // Текущая скорость
     public float maxVelocity; // Максимальная скорость
+    public float interval = .3f;
 
     public override IEnumerator Move(Vector3 target)
     {
@@ -32,6 +33,13 @@ public class MoveableBalatro : MoveableBase
 
     private void MoveXY(float dt, float expTimeXY)
     {
+        float offset = transform.position.x;
+        float sin = Mathf.Sin(Time.time * 6 + offset);
+
+        float movementAmount = .04f * sin * 0.1f;
+
+        transform.localScale = new(transform.localScale.x, transform.localScale.y+movementAmount, transform.localScale.z);
+
         Vector2 T = targetPosition; // Целевая позиция
         Vector2 currentPos = new(transform.localPosition.x, transform.localPosition.y); // Текущая позиция
 

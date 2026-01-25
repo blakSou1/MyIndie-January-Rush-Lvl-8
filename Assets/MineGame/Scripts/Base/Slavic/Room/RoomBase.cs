@@ -5,6 +5,8 @@ public class RoomBase
 {
     public Dictionary<Entity, Coroutine> ListAction = new();
 
+    public Room model;
+
     public Room prefab;
 
     public RoomBase()
@@ -19,6 +21,11 @@ public class RoomBase
     }
 
     public virtual void ExitEntity(Entity toClaim)
+    {
+
+    }
+
+    public virtual void ActivSkil()
     {
 
     }
