@@ -2,10 +2,11 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class AnimationController : MonoBehaviour
 {
-    private SpriteRenderer _targetRenderer;
+    private Image _targetRenderer;
     private AnimationDataSO _currentAnimation;
     private Coroutine _animationCoroutine;
 
@@ -15,7 +16,7 @@ public class AnimationController : MonoBehaviour
 
     public void Init()
     {
-        _targetRenderer = GetComponent<SpriteRenderer>();
+        _targetRenderer = GetComponent<Image>();
     }
 
     public void SetAnimation(AnimationDataSO newAnimation)
@@ -29,8 +30,6 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    public void SetFlip(bool flip) => _targetRenderer.flipX = flip;
-
     private IEnumerator Anim()
     {
         frame = 0;
@@ -39,6 +38,7 @@ public class AnimationController : MonoBehaviour
         {
             if(_currentAnimation.frames[frame] != null)
                 _targetRenderer.sprite = _currentAnimation.frames[frame];
+
 
             Frame frameS = ContainsFrame(frame);
             if (frameS != null)
