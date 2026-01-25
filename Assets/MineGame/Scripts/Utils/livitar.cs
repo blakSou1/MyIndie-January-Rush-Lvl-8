@@ -8,11 +8,11 @@ public class livitar : MonoBehaviour
     private void FixedUpdate()
     {
         float offset = transform.position.x;
-        float sin = Mathf.Sin(Time.time * 2 + offset);
+        float sin = Mathf.Sin(Time.time * 1 + offset);
         if (i) sin = -sin;
 
         float movementAmount = origin * sin * 0.1f;
-        transform.Translate(0, movementAmount, 0, Space.Self);
+        transform.Translate(movementAmount, 0, 0, Space.Self);
         //transform.localPosition = new(transform.localPosition.x, transform.localPosition.y + origin * sin * .1f);
         //transform.localScale = Vector3.one + Vector3.one * sin * .15f;
     }
