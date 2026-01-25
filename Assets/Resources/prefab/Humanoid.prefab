@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  currentHealth: 0
+  _textObject: {fileID: 4622314223681975706, guid: eedaa31bfefa84e4e95efa88c14f7d48, type: 3}
   healthBarmage: {fileID: 1040584957047101440}
 --- !u!1 &8192417919493223317
 GameObject:
