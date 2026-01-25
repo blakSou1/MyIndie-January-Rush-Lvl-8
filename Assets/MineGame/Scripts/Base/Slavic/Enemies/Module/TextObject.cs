@@ -1,4 +1,4 @@
-using DG.Tweening;
+ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -41,6 +41,6 @@ public class TextObject : MonoBehaviour
 
         group.alpha = 0;
 
-        Destroy(gameObject);
+        Destroy(gameObject); 
     }
 }

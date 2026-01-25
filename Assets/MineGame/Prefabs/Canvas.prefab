@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8081ed88a8ece134c98cc188d75fb353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextObject
-  _destroyTime: 2.6
+  _destroyTime: 3
   group: {fileID: 0}
 --- !u!222 &8834695671516056091
 CanvasRenderer:
