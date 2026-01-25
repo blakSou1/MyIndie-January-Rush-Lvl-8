@@ -10,9 +10,10 @@ public class TextObject : MonoBehaviour
     {
         _text = GetComponent<TextMeshProUGUI>();
         _text.text = damage.ToString();
-        transform.DOScale(0, _destroyTime);
-        transform.DOLocalMoveY(200, 5);
-
+        
         Destroy(gameObject, _destroyTime);
+        
+        transform.DOScale(0, _destroyTime);
+        transform.DOLocalMoveY(200, _destroyTime);
     }
 }
