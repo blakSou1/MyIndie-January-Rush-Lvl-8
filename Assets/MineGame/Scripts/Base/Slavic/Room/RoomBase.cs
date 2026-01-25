@@ -1,6 +1,10 @@
+using System.Collections.Generic;
+using UnityEngine;
 
 public class RoomBase
 {
+    public Dictionary<Entity, Coroutine> ListAction = new();
+
     public Room prefab;
 
     public RoomBase()

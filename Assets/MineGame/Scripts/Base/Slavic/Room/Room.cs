@@ -26,6 +26,7 @@ public class Room : MonoBehaviour
             toClaim.state.room.Release(toClaim);
 
         toClaim.state.room = this;
+        objects.Add(toClaim);
 
         toClaim.transform.SetParent(transform, false);
 

@@ -106,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe037f2d4c021a4eb437490da34b856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
 --- !u!114 &7020547813268033511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d46515938708c4f8a348229a261a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 100
   healthBarmage: {fileID: 1040584957047101440}
 --- !u!1 &8192417919493223317
 GameObject:
@@ -187,10 +186,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
