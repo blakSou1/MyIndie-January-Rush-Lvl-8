@@ -25,7 +25,9 @@ public class MoveableBalatro : MoveableBase
         }
 
         int index = G.roomManager.rooms.IndexOf(entity.state.room);
-        G.roomManager.rooms[index + 1].AddEntity(entity);
+
+        if(index + 1 < G.roomManager.rooms.Count)
+            G.roomManager.rooms[index + 1].AddEntity(entity);
     }
 
     private void MoveXY(float dt, float expTimeXY)

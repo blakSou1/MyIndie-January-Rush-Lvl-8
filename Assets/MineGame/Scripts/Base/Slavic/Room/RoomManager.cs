@@ -16,6 +16,7 @@ public class RoomManager : MonoBehaviour
         G.roomManager = this;
 
         AddRoom(typeof(RoomThorns));
+        AddRoom(typeof(RoomPoisonous));
         AddRoom(typeof(RoomThorns));
         AddRoom(typeof(RoomPlayer));
 
