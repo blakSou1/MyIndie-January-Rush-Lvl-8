@@ -41,6 +41,7 @@ public class TextObject : MonoBehaviour
 
         group.alpha = 0;
 
+        transform.DOKill(false);
         Destroy(gameObject, _destroyTime); 
     }
 }
