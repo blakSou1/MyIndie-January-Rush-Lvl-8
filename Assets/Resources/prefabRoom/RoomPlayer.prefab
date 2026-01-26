@@ -245,10 +245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fdf9e0e80e27c4f8ea101a6cf1f8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   objects: []
   events: []
   startPos: {fileID: 8145576700648246972}
   endPos: {fileID: 6444178600221164660}
+  button: {fileID: 0}
+  timereset: 2
 --- !u!1 &2379147007713848554
 GameObject:
   m_ObjectHideFlags: 0

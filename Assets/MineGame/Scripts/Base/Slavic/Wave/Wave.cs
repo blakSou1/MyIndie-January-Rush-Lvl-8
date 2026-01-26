@@ -16,7 +16,7 @@ public class Wave1 : Wave
 
         reward = new()
         {
-            typeof(RoomPoisonous), typeof(RoomPoisonous), typeof(RoomThorns)
+            typeof(RoomPoisonous), typeof(RoomFire), typeof(RoomThorns)
         };
 
         mobs.Add(mob);

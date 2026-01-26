@@ -1,14 +1,14 @@
 using System.Collections;
-using System.Security.Claims;
 using UnityEngine;
 
-public class RoomPoisonous : RoomBase
+public class RoomFire : RoomBase
 {
-    int damage = 1;
+    int damage = 4;
+    bool isSkill = false;
 
-    public RoomPoisonous()
+    public RoomFire()
     {
-        prefab = Framefork.Load<Room>("prefabRoom/" + "RoomPoisonous");
+        prefab = Framefork.Load<Room>("prefabRoom/" + "RoomFire");
         G.roomManager.roomsEntity.Add(this);
     }
 
@@ -16,8 +16,12 @@ public class RoomPoisonous : RoomBase
     {
         toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
 
-        var corutine = G.roomManager.StartCoroutine(DamageEntity(toClaim));
-        ListAction.Add(toClaim, corutine);
+        if (isSkill)
+        {
+            var corutine = model.StartCoroutine(DamageEntityPoisonous(toClaim));
+            ListAction.Add(toClaim, corutine);
+        }
+
     }
 
     public override void ExitEntity(Entity toClaim)
@@ -31,11 +35,17 @@ public class RoomPoisonous : RoomBase
 
     public override void ActivSkil()
     {
+        isSkill = true;
+
         foreach (var a in model.objects)
         {
             var corutine = model.StartCoroutine(DamageEntityPoisonous(a));
             ListAction.Add(a, corutine);
         }
+    }
+    public override void DeActivSkil()
+    {
+        isSkill = false;
     }
 
     private IEnumerator DamageEntityPoisonous(Entity toClaim)
@@ -45,17 +55,6 @@ public class RoomPoisonous : RoomBase
         while (toClaim != null)
         {
             toClaim.state.health.Damage(damage+2);
-            yield return new WaitForSeconds(.3f);
-        }
-    }
-
-    private IEnumerator DamageEntity(Entity toClaim)
-    {
-        yield return null;
-
-        while (ListAction.ContainsKey(toClaim) && toClaim.state.health.currentHealth > 0)
-        {
-            toClaim.state.health.Damage(damage);
             yield return new WaitForSeconds(.3f);
         }
 

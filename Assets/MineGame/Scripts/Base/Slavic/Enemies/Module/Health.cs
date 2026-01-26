@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,6 +59,7 @@ public class Health : MonoBehaviour
         color.a = endAlpha;
         img.color = color;
 
+        transform.DOKill(false);
         Destroy(gameObject);
     }
 

@@ -87,6 +87,7 @@ public static partial class R
         public static AudioClip win_chime;
         public static AudioClip win_magic;
         public static AudioClip y;
+        public static AudioClip Fire;
         public static AudioClip killMain;
         public static AudioClip lose;
         public static AudioClip Menu321;
@@ -178,6 +179,7 @@ public static partial class R
         Audio.win_chime = Resources.Load<AudioClip>("Audio/My/win_chime");
         Audio.win_magic = Resources.Load<AudioClip>("Audio/My/win_magic");
         Audio.y = Resources.Load<AudioClip>("Audio/My/y");
+        Audio.Fire = Resources.Load<AudioClip>("Audio/Petroy/Fire");
         Audio.killMain = Resources.Load<AudioClip>("Audio/Petroy/killMain");
         Audio.lose = Resources.Load<AudioClip>("Audio/Petroy/lose");
         Audio.Menu321 = Resources.Load<AudioClip>("Audio/Petroy/Menu321");

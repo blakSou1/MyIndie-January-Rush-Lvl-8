@@ -15,6 +15,8 @@ public class AnimScillThorns : AnimActivScill
 
     public override void Activ()
     {
+        transform.DOKill(false);
+
         StopAllCoroutines();
         StartCoroutine(MoveAllObjects());
     }
