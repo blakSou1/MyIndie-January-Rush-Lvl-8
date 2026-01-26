@@ -17,6 +17,7 @@ public class GameMode : MonoBehaviour
 
     public void NextWave()
     {
+        
         indexWave++;
 
         switch (indexWave)
