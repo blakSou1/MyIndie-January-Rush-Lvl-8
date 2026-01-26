@@ -88,6 +88,8 @@ public static partial class R
         public static AudioClip win_magic;
         public static AudioClip y;
         public static AudioClip Menu321;
+        public static AudioClip Pic;
+        public static AudioClip poisonous;
     }
 
     public static void InitAudio()
@@ -175,5 +177,7 @@ public static partial class R
         Audio.win_magic = Resources.Load<AudioClip>("Audio/My/win_magic");
         Audio.y = Resources.Load<AudioClip>("Audio/My/y");
         Audio.Menu321 = Resources.Load<AudioClip>("Audio/Petroy/Menu321");
+        Audio.Pic = Resources.Load<AudioClip>("Audio/Petroy/Pic");
+        Audio.poisonous = Resources.Load<AudioClip>("Audio/Petroy/poisonous");
     }
 }

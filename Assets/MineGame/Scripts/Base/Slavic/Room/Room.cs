@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class RoomeState
 {
@@ -16,12 +18,20 @@ public class Room : MonoBehaviour
     public Transform startPos;
     public Transform endPos;
 
+    private AnimActivScill skillAnim;
+
+    [HideInInspector] public Button button;
+
     public RoomeState state;
 
+    public float timereset = 2f;
+    private bool reset = true;
     public void SetState(RoomeState room)
     {
         state = room;
         state.model.model = this;
+        skillAnim = GetComponent<AnimActivScill>();
+        if(skillAnim != null)skillAnim.model = this;
     }
 
     public void AddEntity(Entity toClaim)
@@ -42,7 +52,40 @@ public class Room : MonoBehaviour
 
     public void ActivationSkill()
     {
+        if (!reset) return;
+
         state.model.ActivSkil();//TODO время востановления скила + визуальная обвязка
+        skillAnim.Activ();
+
+        button.StartCoroutine(SkilButtonReset());
+    }
+    private IEnumerator SkilButtonReset()
+    {
+        reset = false;
+        button.interactable = false;
+
+        yield return button.StartCoroutine(SkilButtonResetVisual());
+
+        reset = true;
+        button.interactable = true;
+    }
+    private IEnumerator SkilButtonResetVisual()
+    {
+        Image im = button.GetComponent<Image>();
+
+        float time = 0;
+
+        while(time < timereset)
+        {
+            time += .1f;
+
+            float targetFillAmount = (float)time / (float)timereset;
+            im.fillAmount = targetFillAmount;
+
+            yield return new WaitForSeconds(.1f);
+        }
+
+        im.fillAmount = 1;
     }
 
     public void Release(Entity toClaim)

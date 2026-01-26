@@ -1,4 +1,4 @@
- using DG.Tweening;
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -15,9 +15,9 @@ public class TextObject : MonoBehaviour
         _text = GetComponent<TextMeshProUGUI>();
         _text.text = damage.ToString();
 
-        transform.DOLocalRotate(new Vector3(0, 0, 50 * 3), 2, RotateMode.LocalAxisAdd);
+        transform.DOLocalRotate(new Vector3(0, 0, 10 * 3), 2, RotateMode.LocalAxisAdd);
         transform.DOScale(0, _destroyTime);
-        transform.DOLocalMoveY(Random.Range(50, 100), _destroyTime);
+        transform.DOLocalMoveY(Random.Range(10, 50), _destroyTime);
         StartCoroutine(FadeOutRandom());
     }
 
@@ -41,6 +41,6 @@ public class TextObject : MonoBehaviour
 
         group.alpha = 0;
 
-        Destroy(gameObject); 
+        Destroy(gameObject, _destroyTime); 
     }
 }

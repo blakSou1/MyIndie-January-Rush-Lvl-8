@@ -1,6 +1,4 @@
 
-using UnityEngine;
-
 public class RoomPlayer : RoomBase
 {
     public RoomPlayer()
@@ -11,7 +9,7 @@ public class RoomPlayer : RoomBase
 
     public override void EnterEntity(Entity toClaim)
     {
-        G.roomManager.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
+        toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
     }
     public override void ExitEntity(Entity toClaim)
     {

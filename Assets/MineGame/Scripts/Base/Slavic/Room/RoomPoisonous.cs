@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Claims;
 using UnityEngine;
 
 public class RoomPoisonous : RoomBase
@@ -13,7 +14,7 @@ public class RoomPoisonous : RoomBase
 
     public override void EnterEntity(Entity toClaim)
     {
-        G.roomManager.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
+        toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
 
         var corutine = G.roomManager.StartCoroutine(DamageEntity(toClaim));
         ListAction.Add(toClaim, corutine);
@@ -25,6 +26,25 @@ public class RoomPoisonous : RoomBase
         {
             G.roomManager.StopCoroutine(cor);
             ListAction.Remove(toClaim);
+        }
+    }
+
+    public override void ActivSkil()
+    {
+        foreach (var a in model.objects)
+        {
+            var corutine = model.StartCoroutine(DamageEntityPoisonous(a));
+        }
+    }
+
+    private IEnumerator DamageEntityPoisonous(Entity toClaim)
+    {
+        yield return null;
+
+        while (toClaim != null)
+        {
+            toClaim.state.health.Damage(damage+2);
+            yield return new WaitForSeconds(.3f);
         }
     }
 

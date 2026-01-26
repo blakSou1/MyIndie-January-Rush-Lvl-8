@@ -466,10 +466,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1380,13 +1380,13 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8305420622385749817, guid: da64723b7d05de24e9fcebb91cefdf25, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1470194917}
+    - targetCorrespondingSourceObject: {fileID: 8305420622385749817, guid: da64723b7d05de24e9fcebb91cefdf25, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1622174362}
     - targetCorrespondingSourceObject: {fileID: 8305420622385749817, guid: da64723b7d05de24e9fcebb91cefdf25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2090782122}
-    - targetCorrespondingSourceObject: {fileID: 8305420622385749817, guid: da64723b7d05de24e9fcebb91cefdf25, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1470194917}
     - targetCorrespondingSourceObject: {fileID: 8305420622385749817, guid: da64723b7d05de24e9fcebb91cefdf25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 499829964}
@@ -1774,10 +1774,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -2400,10 +2400,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -2713,10 +2713,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -2956,10 +2956,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -6898,10 +6898,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -7743,9 +7743,9 @@ MonoBehaviour:
   - {fileID: 901977243}
   skilButton:
   - {fileID: 645872206}
+  - {fileID: 1807173574}
   - {fileID: 571831198}
   - {fileID: 721429630}
-  - {fileID: 1807173574}
   - {fileID: 436447804}
   - {fileID: 131760006}
   indexCamera: 0

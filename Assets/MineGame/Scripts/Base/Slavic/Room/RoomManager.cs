@@ -17,6 +17,14 @@ public class RoomManager : MonoBehaviour
     void Awake()
     {
         G.roomManager = this;
+        foreach (var i in skilButton)
+        {
+            Image im = i.GetComponent<Image>();
+            Color color = im.color;
+
+            color.a = 0;
+            im.color = color;
+        }
 
         AddRoom(typeof(RoomThorns));
         AddRoom(typeof(RoomPoisonous));
@@ -30,6 +38,8 @@ public class RoomManager : MonoBehaviour
 
         room.transform.SetParent(camera[indexCamera].transform, false);
 
+        room.button = skilButton[indexCamera];
+
         SubscribeButtonToEvents(skilButton[indexCamera], room.events);
 
         indexCamera++;
@@ -38,6 +48,15 @@ public class RoomManager : MonoBehaviour
     }
     private void SubscribeButtonToEvents(Button button, List<UnityEvent> events = null)//TODO делать кнопку невидимой если нет ивентов
     {
+        if(events.Count > 0)
+        {
+            Image im = button.GetComponent<Image>();
+            Color color = im.color;
+
+            color.a = 1;
+            im.color = color;
+        }
+
         button.onClick.RemoveAllListeners();
 
         foreach (UnityEvent unityEvent in events)
