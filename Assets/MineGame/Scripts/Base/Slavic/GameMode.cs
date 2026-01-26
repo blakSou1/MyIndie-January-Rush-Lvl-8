@@ -1,8 +1,11 @@
+
+using DG.Tweening;
 using UnityEngine;
 
 public class GameMode : MonoBehaviour
 {
     int indexWave = 0;
+    [SerializeField]private GameObject _castle;
     Wave wave;
 
     private void Awake()
@@ -17,8 +20,16 @@ public class GameMode : MonoBehaviour
 
     public void NextWave()
     {
-        
         indexWave++;
+        if(indexWave <= 4)
+        {
+            Sequence sequence = DOTween.Sequence();
+            sequence
+            .Append(Camera.main.transform.DORotate(new Vector3(0, 90, 0), 1))
+            .Append(_castle.transform.DOMoveY(-4f+indexWave, 2))
+            .Append(Camera.main.transform.DORotate(new Vector3(0, 0, 0), 1));
+        }
+        
 
         switch (indexWave)
         {
