@@ -27,9 +27,35 @@ public class RoomManager : MonoBehaviour
         }
 
         AddRoom(typeof(RoomThorns));
-        AddRoom(typeof(RoomPoisonous));
-        AddRoom(typeof(RoomThorns));
         AddRoom(typeof(RoomPlayer));
+    }
+
+    public void AddInsertRoom(Type roomType)
+    {
+        Room room = Framefork.AddRoom(roomType);
+
+        int index = Mathf.Max(0, rooms.Count - 1);
+
+        room.transform.SetParent(camera[index].transform, false);
+
+        room.button = skilButton[index];
+
+        SubscribeButtonToEvents(skilButton[index], room.events);
+
+        indexCamera++;
+
+        rooms.Insert(index, room);
+
+
+        int indexPlayer = rooms.Count - 1;
+
+        room = rooms[indexPlayer];
+
+        room.transform.SetParent(camera[indexPlayer].transform, false);
+
+        room.button = skilButton[indexPlayer];
+
+        SubscribeButtonToEvents(skilButton[indexPlayer], room.events);
     }
 
     public void AddRoom(Type roomType)
@@ -46,7 +72,7 @@ public class RoomManager : MonoBehaviour
 
         rooms.Add(room);
     }
-    private void SubscribeButtonToEvents(Button button, List<UnityEvent> events = null)//TODO делать кнопку невидимой если нет ивентов
+    private void SubscribeButtonToEvents(Button button, List<UnityEvent> events = null)
     {
         if(events.Count > 0)
         {

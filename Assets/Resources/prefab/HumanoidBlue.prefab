@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1701000878422578658}
   - component: {fileID: 7020547813268033511}
   m_Layer: 0
-  m_Name: Humanoid
+  m_Name: HumanoidBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPosition: {x: 0, y: 0, z: 0}
   entity: {fileID: 0}
-  maxVelocity: 12
+  maxVelocity: 20
   interval: 0.3
 --- !u!114 &1701000878422578658
 MonoBehaviour:
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d46515938708c4f8a348229a261a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 16
   currentHealth: 0
   _textObject: {fileID: 4622314223681975706, guid: eedaa31bfefa84e4e95efa88c14f7d48, type: 3}
   healthBarmage: {fileID: 1040584957047101440}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -260033924, guid: dc387dcbf47f1dd4eb997e6b01a7eb4e, type: 3}
+  m_Sprite: {fileID: -266537634, guid: dc387dcbf47f1dd4eb997e6b01a7eb4e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

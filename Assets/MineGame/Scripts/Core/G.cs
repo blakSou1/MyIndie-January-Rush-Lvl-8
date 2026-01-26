@@ -24,6 +24,10 @@ public static class G
     //Объекты в игре
     public static Volume volume;
     public static RoomManager roomManager;
+    public static GameMode gameMode;
+    public static Choice choice;
+    public static SpawnerController spawnerController;
+
 
 }
 

@@ -57,5 +57,7 @@ public class RoomPoisonous : RoomBase
             toClaim.state.health.Damage(damage);
             yield return new WaitForSeconds(.3f);
         }
+
+        ListAction.Remove(toClaim);
     }
 }

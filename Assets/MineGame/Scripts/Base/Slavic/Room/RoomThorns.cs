@@ -15,6 +15,14 @@ public class RoomThorns : RoomBase
     {
         toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
     }
+    public override void ExitEntity(Entity toClaim)
+    {
+        if (ListAction.TryGetValue(toClaim, out Coroutine cor))
+        {
+            G.roomManager.StopCoroutine(cor);
+            ListAction.Remove(toClaim);
+        }
+    }
 
     public override void ActivSkil()
     {
@@ -35,5 +43,7 @@ public class RoomThorns : RoomBase
             toClaim.state.health.Damage(damage);
             yield return new WaitForSeconds(.3f);
         }
+
+        ListAction.Remove(toClaim);
     }
 }

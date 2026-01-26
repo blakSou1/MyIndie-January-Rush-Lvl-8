@@ -21,6 +21,8 @@ public static class Framefork
             model = basicEntity
         };
 
+        if (basicEntity == null) Debug.Log("not basic entity");
+
         var instance = GameObject.Instantiate(basicEntity.prefab);
         instance.SetState(state);
         return instance;

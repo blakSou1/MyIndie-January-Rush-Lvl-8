@@ -11,6 +11,8 @@ public class RoomeState
 
 public class Room : MonoBehaviour
 {
+    public Sprite icon;
+
     public List<Entity> objects = new();
 
     public List<UnityEvent> events;
