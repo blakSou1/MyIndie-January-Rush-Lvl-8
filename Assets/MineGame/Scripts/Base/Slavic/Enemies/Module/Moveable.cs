@@ -29,6 +29,8 @@ public class MoveableBalatro : MoveableBase
 
         if(index + 1 < G.roomManager.rooms.Count)
             G.roomManager.rooms[index + 1].AddEntity(entity);
+        else if (G.roomManager.rooms[index].state.model.GetType() == typeof(RoomPlayer))
+            G.roomManager.rooms[index].state.model.ExitEntity(entity);
     }
 
     private void MoveXY(float dt, float expTimeXY)

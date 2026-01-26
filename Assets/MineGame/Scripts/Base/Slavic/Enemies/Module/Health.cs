@@ -41,6 +41,8 @@ public class Health : MonoBehaviour
     }
     private IEnumerator FadeImage(Image img, float startAlpha, float endAlpha, float duration)
     {
+        G.AudioManager.PlaySound(R.Audio.killMain, 0.5f);
+
         float elapsedTime = 0f;
         Color color = img.color;
 

@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public class RoomPlayer : RoomBase
 {
@@ -13,8 +14,8 @@ public class RoomPlayer : RoomBase
     }
     public override void ExitEntity(Entity toClaim)
     {
-        //TODO Game over
-
+        Debug.Log("ddd");
+        G.loss.Louse();
     }
 
 }
