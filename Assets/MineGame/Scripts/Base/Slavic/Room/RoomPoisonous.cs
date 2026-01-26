@@ -34,7 +34,9 @@ public class RoomPoisonous : RoomBase
         foreach (var a in model.objects)
         {
             var corutine = model.StartCoroutine(DamageEntityPoisonous(a));
-            ListAction.Add(a, corutine);
+
+            if (!ListAction.ContainsKey(a))
+                ListAction.Add(a, corutine);
         }
     }
 

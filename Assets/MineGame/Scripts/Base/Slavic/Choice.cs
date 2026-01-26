@@ -46,7 +46,7 @@ public class Choice : MonoBehaviour
         room3 = null;
 
         G.roomManager.AddInsertRoom(room.GetType());
-        G.gameMode.NextWave();
+        G.gameMode.StartCoroutine(G.gameMode.NextWave());
     }
 
     public void ChoiceIn(Type roomType1, Type roomType2, Type roomType3)

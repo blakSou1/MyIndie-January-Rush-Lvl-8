@@ -40,7 +40,9 @@ public class RoomFire : RoomBase
         foreach (var a in model.objects)
         {
             var corutine = model.StartCoroutine(DamageEntityPoisonous(a));
-            ListAction.Add(a, corutine);
+
+            if (!ListAction.ContainsKey(a))
+                ListAction.Add(a, corutine);
         }
     }
     public override void DeActivSkil()

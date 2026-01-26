@@ -27,6 +27,11 @@ public class Wave2 : Wave
 {
     public Wave2()
     {
+        reward = new()
+        {
+            typeof(RoomFire), typeof(RoomThorns), typeof(RoomThorns)
+        };
+
         Mobs mob = new()
         {
             type = typeof(BasicEnemies),
@@ -42,6 +47,31 @@ public class Wave2 : Wave
             count = 3,
             startSpawnTime = 4.5f,
             spawnInterval = 2.7f,
+        };
+        mobs.Add(mob);
+
+    }
+}
+
+public class Wave3 : Wave
+{
+    public Wave3()
+    {
+        Mobs mob = new()
+        {
+            type = typeof(BasicEnemies),
+            count = 14,
+            startSpawnTime = 2f,
+            spawnDuration = 12f,
+        };
+        mobs.Add(mob);
+
+        mob = new()
+        {
+            type = typeof(Asasin),
+            count = 4,
+            startSpawnTime = 4.5f,
+            spawnInterval = 3.7f,
         };
         mobs.Add(mob);
 

@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fdf9e0e80e27c4f8ea101a6cf1f8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: -1579081767, guid: 6e62ca8403215b84284101e2930d4557, type: 3}
+  icon: {fileID: -34172741, guid: f42901caa48b2964587c9a7408f06b09, type: 3}
   objects: []
   events:
   - m_PersistentCalls:

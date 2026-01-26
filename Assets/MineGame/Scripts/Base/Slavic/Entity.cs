@@ -22,6 +22,8 @@ public class Entity : MonoBehaviour
 
         state.moveable = GetComponent<MoveableBase>();
         state.health = GetComponent<Health>();
+        state.health.model = this;
+
         state.moveable.entity = this;
     }
 }

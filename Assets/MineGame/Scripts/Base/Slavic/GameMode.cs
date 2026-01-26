@@ -1,5 +1,5 @@
-
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class GameMode : MonoBehaviour
@@ -15,24 +15,18 @@ public class GameMode : MonoBehaviour
 
     void Start()
     {
-        NextWave();
+        StartCoroutine(G.gameMode.NextWave());
     }
 
-    public void NextWave()
+    public IEnumerator NextWave()
     {
         indexWave++;
-        if(indexWave <= 4)
-        {
-            Sequence sequence = DOTween.Sequence();
-            sequence
-            .Append(Camera.main.transform.DORotate(new Vector3(0, 90, 0), 1))
-            .Append(_castle.transform.DOMoveY(-4f+indexWave, 2))
-            .Append(Camera.main.transform.DORotate(new Vector3(0, 0, 0), 1));
-        }
-        
 
+        yield return StartCoroutine(PlayWaveAnimation());
+        
         switch (indexWave)
         {
+
             case 1:
                 wave = new Wave1();
                 G.spawnerController.StartSpawmWave(wave);
@@ -41,14 +35,40 @@ public class GameMode : MonoBehaviour
                 wave = new Wave2();
                 G.spawnerController.StartSpawmWave(wave);
                 break;
+            case 3:
+                wave = new Wave3();
+                G.spawnerController.StartSpawmWave(wave);
+                break;
 
 
         }
     }
     public void NextWaveChoice()
     {
-        if (indexWave != 0)
+        if (indexWave != 0 && wave.reward[0] != null)
             G.choice.ChoiceIn(wave.reward[0], wave.reward[1], wave.reward[2]);
+    }
+
+    public IEnumerator PlayWaveAnimation()
+    {
+        if (indexWave <= 4)
+        {
+            G.AudioManager.PlaySound(R.Audio.bah, .5f);
+
+            Camera.main.transform.DOKill(false);
+            _castle.transform.DOKill(false);
+
+            Sequence sequence = DOTween.Sequence();
+
+            sequence
+                .Append(Camera.main.transform.DORotate(new Vector3(0, 90, 0), 1))
+                .Append(_castle.transform.DOMoveY(-4f + indexWave, 2))
+                .Append(Camera.main.transform.DORotate(new Vector3(0, 0, 0), 1));
+
+            yield return sequence.WaitForCompletion();
+        }
+        else
+            yield return null;
     }
 
 }
