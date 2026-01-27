@@ -4,7 +4,6 @@ using UnityEngine;
 public class MoveableBalatro : MoveableBase
 {
     private Vector2 velocity; // Текущая скорость
-    public float maxVelocity; // Максимальная скорость
     public float interval = .3f;
 
     public override IEnumerator Move(Vector3 target)
@@ -104,6 +103,7 @@ public class MoveableBase : ManagedBehaviour
 {
     public Vector3 targetPosition;
     public Entity entity;
+    public float maxVelocity;
 
     public virtual IEnumerator Move(Vector3 target)
     {

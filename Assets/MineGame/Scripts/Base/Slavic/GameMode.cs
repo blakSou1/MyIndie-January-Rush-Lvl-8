@@ -39,6 +39,10 @@ public class GameMode : MonoBehaviour
                 wave = new Wave3();
                 G.spawnerController.StartSpawmWave(wave);
                 break;
+            case 4:
+                wave = new Wave4();
+                G.spawnerController.StartSpawmWave(wave);
+                break;
 
 
         }
@@ -55,8 +59,8 @@ public class GameMode : MonoBehaviour
         {
             G.AudioManager.PlaySound(R.Audio.bah, .5f);
 
-            Camera.main.transform.DOKill(false);
-            _castle.transform.DOKill(false);
+            //Camera.main.transform.DOKill(false);
+            //_castle.transform.DOKill(false);
 
             Sequence sequence = DOTween.Sequence();
 
@@ -68,7 +72,10 @@ public class GameMode : MonoBehaviour
             yield return sequence.WaitForCompletion();
         }
         else
+        {
+            G.loss.Win();
             yield return null;
+        }
     }
 
 }

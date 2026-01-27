@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class Loss : MonoBehaviour
 {
-    public CanvasGroup group;
+    public CanvasGroup groupLoss;
+    public CanvasGroup groupWin;
+
     bool isLoss = false;
 
     void Start()
     {
         G.loss = this;
-        StartCoroutine(CanvasGroupHide(0, 0, 0));
+        StartCoroutine(CanvasGroupHide(0, 0, groupLoss, 0));
+        StartCoroutine(CanvasGroupHide(0, 0, groupWin, 0));
     }
 
     public void Louse()
@@ -20,10 +23,20 @@ public class Loss : MonoBehaviour
 
         G.AudioManager.PlaySound(R.Audio.Louse, .5f);
 
-        StartCoroutine(CanvasGroupHide(0, 1, .4f));
+        StartCoroutine(CanvasGroupHide(0, 1, groupLoss, .4f));
+    }
+    public void Win()
+    {
+        if (isLoss) return;
+
+        isLoss = true;
+
+        G.AudioManager.PlaySound(R.Audio.Louse, .5f);
+
+        StartCoroutine(CanvasGroupHide(0, 1, groupWin, .4f));
     }
 
-    private IEnumerator CanvasGroupHide(float start, float end, float time = .3f)
+    private IEnumerator CanvasGroupHide(float start, float end, CanvasGroup group, float time = .3f)
     {
         group.alpha = start;
 
