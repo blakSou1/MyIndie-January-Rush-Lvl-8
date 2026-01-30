@@ -3,12 +3,32 @@ using UnityEngine;
 
 public class MoveableBalatro : MoveableBase
 {
-    private Vector2 velocity; // Текущая скорость
+    private Vector2 velocity;
     public float interval = .3f;
+    Vector3 def = new(1, 1, 1);
+    Entity en;
 
     public override IEnumerator Move(Vector3 target)
     {
-        targetPosition = target;
+        if(en == null)
+            en = GetComponent<Entity>();
+
+        int i = G.roomManager.rooms.IndexOf(en.state.room);
+
+        if (i == 0 || i == G.roomManager.rooms.Count || i == G.roomManager.rooms.Count - 1 || !G.roomManager.rooms[i].state.model.isRigth)
+        {
+            targetPosition = target;
+            transform.localScale = def;
+        }
+        else
+        {
+            targetPosition = en.state.room.state.model.prefab.startPos.position;
+
+            transform.localPosition = target;
+
+            transform.localScale = new( -transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        }
+
 
         bool isMoving = true;
         float arrivalThreshold = 1f;
@@ -27,7 +47,12 @@ public class MoveableBalatro : MoveableBase
         int index = G.roomManager.rooms.IndexOf(entity.state.room);
 
         if(index + 1 < G.roomManager.rooms.Count)
-            G.roomManager.rooms[index + 1].AddEntity(entity);
+        {
+            if (G.roomManager.rooms[index + 1] == null)
+                G.roomManager.rooms[G.roomManager.rooms.Count - 1].AddEntity(entity);
+            else
+                G.roomManager.rooms[index + 1].AddEntity(entity);
+        }
         else if (index + 1 >= G.roomManager.rooms.Count)
             G.roomManager.rooms[index].state.model.ExitEntity(entity);
     }

@@ -10,6 +10,7 @@ public class RoomFire : RoomBase
     {
         prefab = Framefork.Load<Room>("prefabRoom/" + "RoomFire");
         G.roomManager.roomsEntity.Add(this);
+        isRigth = true;
     }
 
     public override void EnterEntity(Entity toClaim)
@@ -53,6 +54,13 @@ public class RoomFire : RoomBase
     public override void DeActivSkil()
     {
         isSkill = false;
+
+        foreach (var toClaim in model.objects)
+            while (ListAction.TryGetValue(toClaim, out Coroutine cor))
+            {
+                G.roomManager.StopCoroutine(cor);
+                ListAction.Remove(toClaim);
+            }
     }
 
     private IEnumerator DamageEntityPoisonous(Entity toClaim)

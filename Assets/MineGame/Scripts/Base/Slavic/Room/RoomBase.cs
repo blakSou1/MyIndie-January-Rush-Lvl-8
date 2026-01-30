@@ -10,6 +10,8 @@ public class RoomBase
 
     public Room prefab;
 
+    public bool isRigth = false;
+
     public RoomBase()
     {
         prefab = Framefork.Load<Room>("prefabRoom/" + "name");

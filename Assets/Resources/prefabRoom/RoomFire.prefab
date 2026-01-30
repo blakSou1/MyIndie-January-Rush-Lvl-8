@@ -267,7 +267,7 @@ MonoBehaviour:
   - {fileID: 3670047349273437582}
   moveHeight: 2
   moveDuration: 1
-  waitTime: 6
+  waitTime: 8
   fadeDuration: 0.2
 --- !u!1 &2705218808040124843
 GameObject:

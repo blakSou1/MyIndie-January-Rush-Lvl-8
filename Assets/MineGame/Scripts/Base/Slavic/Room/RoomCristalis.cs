@@ -9,6 +9,7 @@ public class RoomCristalis : RoomBase
     {
         prefab = Framefork.Load<Room>("prefabRoom/" + "RoomCristalis");
         G.roomManager.roomsEntity.Add(this);
+        isRigth = true;
     }
 
     public override void EnterEntity(Entity toClaim)

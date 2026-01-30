@@ -56,7 +56,7 @@ public class Room : MonoBehaviour
     {
         if (!reset) return;
 
-        state.model.ActivSkil();//TODO время востановления скила + визуальная обвязка
+        state.model.ActivSkil();
         skillAnim.Activ();
 
         button.StartCoroutine(SkilButtonReset());

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Claims;
 using UnityEngine;
 
 public class RoomThorns : RoomBase
@@ -47,6 +48,13 @@ public class RoomThorns : RoomBase
     public override void DeActivSkil()
     {
         isSkill = false;
+
+        foreach(var toClaim in model.objects)
+            while (ListAction.TryGetValue(toClaim, out Coroutine cor))
+            {
+                G.roomManager.StopCoroutine(cor);
+                ListAction.Remove(toClaim);
+            }
     }
 
     private IEnumerator DamageEntity(Entity toClaim)

@@ -8,6 +8,8 @@ public class RoomPuk : RoomBase
     {
         prefab = Framefork.Load<Room>("prefabRoom/" + "RoomPuk");
         G.roomManager.roomsEntity.Add(this);
+        isRigth = true;
+
     }
 
     public override void EnterEntity(Entity toClaim)
