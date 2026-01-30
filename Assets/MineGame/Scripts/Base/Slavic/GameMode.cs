@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameMode : MonoBehaviour
 {
-    int indexWave = 0;
+    public int indexWave = 0;
     [SerializeField]private GameObject _castle;
     Wave wave;
 
@@ -26,7 +26,6 @@ public class GameMode : MonoBehaviour
         
         switch (indexWave)
         {
-
             case 1:
                 wave = new Wave1();
                 G.spawnerController.StartSpawmWave(wave);
@@ -43,8 +42,10 @@ public class GameMode : MonoBehaviour
                 wave = new Wave4();
                 G.spawnerController.StartSpawmWave(wave);
                 break;
-
-
+            case 5:
+                wave = new Wave5();
+                G.spawnerController.StartSpawmWave(wave);
+                break;
         }
     }
     public void NextWaveChoice()
@@ -55,18 +56,17 @@ public class GameMode : MonoBehaviour
 
     public IEnumerator PlayWaveAnimation()
     {
-        if (indexWave <= 4)
+        if(indexWave == 1)
+            yield return null;
+        else if (indexWave <= 5)
         {
             G.AudioManager.PlaySound(R.Audio.bah, .5f);
-
-            //Camera.main.transform.DOKill(false);
-            //_castle.transform.DOKill(false);
 
             Sequence sequence = DOTween.Sequence();
 
             sequence
                 .Append(Camera.main.transform.DORotate(new Vector3(0, 90, 0), 1))
-                .Append(_castle.transform.DOMoveY(-4f + indexWave, 2))
+                .Append(_castle.transform.DOMoveY(-4f + indexWave-1, 2))
                 .Append(Camera.main.transform.DORotate(new Vector3(0, 0, 0), 1));
 
             yield return sequence.WaitForCompletion();

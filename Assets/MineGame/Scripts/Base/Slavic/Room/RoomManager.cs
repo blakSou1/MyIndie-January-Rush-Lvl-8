@@ -26,6 +26,7 @@ public class RoomManager : MonoBehaviour
             im.color = color;
         }
 
+        //AddRoom(typeof(RoomPuk));
         AddRoom(typeof(RoomThorns));
         AddRoom(typeof(RoomPlayer));
     }

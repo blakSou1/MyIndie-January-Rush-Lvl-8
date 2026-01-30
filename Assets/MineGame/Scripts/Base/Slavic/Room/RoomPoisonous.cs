@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Security.Claims;
 using UnityEngine;
 
 public class RoomPoisonous : RoomBase
 {
     int damage = 1;
+    bool isSkill = false;
 
     public RoomPoisonous()
     {
@@ -16,21 +16,29 @@ public class RoomPoisonous : RoomBase
     {
         toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
 
-        var corutine = G.roomManager.StartCoroutine(DamageEntity(toClaim));
-        ListAction.Add(toClaim, corutine);
+        var corutine = G.roomManager.StartCoroutine(DamageEntityPassiv(toClaim));
+        ListPassiv.Add(toClaim, corutine);
+
+        if (isSkill)
+        {
+            corutine = model.StartCoroutine(DamageEntityPoisonous(toClaim));
+            ListAction.Add(toClaim, corutine);
+        }
     }
 
     public override void ExitEntity(Entity toClaim)
     {
-        if(ListAction.TryGetValue(toClaim, out Coroutine cor))
+        while (ListPassiv.TryGetValue(toClaim, out Coroutine cor))
         {
             G.roomManager.StopCoroutine(cor);
-            ListAction.Remove(toClaim);
+            ListPassiv.Remove(toClaim);
         }
     }
 
     public override void ActivSkil()
     {
+        isSkill = true;
+
         foreach (var a in model.objects)
         {
             var corutine = model.StartCoroutine(DamageEntityPoisonous(a));
@@ -39,6 +47,10 @@ public class RoomPoisonous : RoomBase
                 ListAction.Add(a, corutine);
         }
     }
+    public override void DeActivSkil()
+    {
+        isSkill = false;
+    }
 
     private IEnumerator DamageEntityPoisonous(Entity toClaim)
     {
@@ -46,21 +58,21 @@ public class RoomPoisonous : RoomBase
 
         while (toClaim != null)
         {
-            toClaim.state.health.Damage(damage+2);
+            toClaim.state.health.Damage((float)damage * 0.4f);
             yield return new WaitForSeconds(.3f);
         }
     }
 
-    private IEnumerator DamageEntity(Entity toClaim)
+    private IEnumerator DamageEntityPassiv(Entity toClaim)
     {
         yield return null;
 
-        while (ListAction.ContainsKey(toClaim) && toClaim.state.health.currentHealth > 0)
+        while (ListPassiv.ContainsKey(toClaim) && toClaim.state.health.currentHealth > 0)
         {
             toClaim.state.health.Damage(damage);
             yield return new WaitForSeconds(.3f);
         }
 
-        ListAction.Remove(toClaim);
+        ListPassiv.Remove(toClaim);
     }
 }

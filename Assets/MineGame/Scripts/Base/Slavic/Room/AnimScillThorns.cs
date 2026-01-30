@@ -69,6 +69,8 @@ public class AnimScillThorns : AnimActivScill
         }
 
         yield return new WaitForSeconds(moveDuration);
+
+        model.state.model.DeActivSkil();
     }
 
 }

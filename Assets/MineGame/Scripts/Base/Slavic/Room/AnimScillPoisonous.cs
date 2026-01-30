@@ -62,6 +62,8 @@ public class AnimScillPoisonous : AnimActivScill
 
         color.a = endAlpha;
         img.color = color;
+
+        model.state.model.DeActivSkil();
     }
 
 }

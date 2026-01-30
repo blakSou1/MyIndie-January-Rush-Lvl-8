@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TextObject : MonoBehaviour
 {
-    [SerializeField] private float _destroyTime;
+    public float _destroyTime;
     private TextMeshProUGUI _text;
     [HideInInspector] public CanvasGroup group;
 
@@ -15,7 +15,7 @@ public class TextObject : MonoBehaviour
         _text = GetComponent<TextMeshProUGUI>();
         _text.text = damage.ToString();
 
-        transform.DOLocalRotate(new Vector3(0, 0, 10 * 3), 2, RotateMode.LocalAxisAdd);
+        transform.DOLocalRotate(new Vector3(0, 0, 10 * 3), _destroyTime, RotateMode.LocalAxisAdd);
         transform.DOScale(0, _destroyTime);
         transform.DOLocalMoveY(Random.Range(10, 50), _destroyTime);
         StartCoroutine(FadeOutRandom());

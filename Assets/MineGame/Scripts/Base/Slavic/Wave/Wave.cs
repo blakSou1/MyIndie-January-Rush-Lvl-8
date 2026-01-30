@@ -59,7 +59,7 @@ public class Wave3 : Wave
     {
         reward = new()
         {
-            typeof(RoomPoisonous), typeof(RoomCristalis), typeof(RoomThorns)
+            typeof(RoomPoisonous), typeof(RoomCristalis), typeof(RoomPuk)
         };
 
         Mobs mob = new()
@@ -121,6 +121,46 @@ public class Wave4 : Wave
 
     }
 }
+
+public class Wave5 : Wave
+{
+    public Wave5()
+    {
+        reward = new()
+        {
+            typeof(RoomFire), typeof(RoomCristalis), typeof(RoomPuk)
+        };
+
+        Mobs mob = new()
+        {
+            type = typeof(BasicEnemies),
+            count = 6,
+            startSpawnTime = 2f,
+            spawnInterval = 2f,
+        };
+        mobs.Add(mob);
+
+        mob = new()
+        {
+            type = typeof(Asasin),
+            count = 4,
+            startSpawnTime = 4.5f,
+            spawnInterval = 3.7f,
+        };
+        mobs.Add(mob);
+
+        mob = new()
+        {
+            type = typeof(Tank),
+            count = 1,
+            startSpawnTime = 7f,
+            spawnInterval = 1f,
+        };
+        mobs.Add(mob);
+
+    }
+}
+
 
 public class Wave
 {

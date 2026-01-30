@@ -21,16 +21,21 @@ public class RoomFire : RoomBase
             var corutine = model.StartCoroutine(DamageEntityPoisonous(toClaim));
             ListAction.Add(toClaim, corutine);
         }
-
     }
 
     public override void ExitEntity(Entity toClaim)
     {
-        if(ListAction.TryGetValue(toClaim, out Coroutine cor))
+        while (ListAction.TryGetValue(toClaim, out Coroutine cor))
         {
             G.roomManager.StopCoroutine(cor);
             ListAction.Remove(toClaim);
         }
+        while (ListPassiv.TryGetValue(toClaim, out Coroutine cor))
+        {
+            G.roomManager.StopCoroutine(cor);
+            ListPassiv.Remove(toClaim);
+        }
+
     }
 
     public override void ActivSkil()

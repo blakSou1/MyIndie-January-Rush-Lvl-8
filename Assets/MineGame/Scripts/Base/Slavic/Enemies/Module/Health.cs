@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public int health = 10;
-    [HideInInspector] public int currentHealth;
+    [HideInInspector] public float currentHealth;
     [SerializeField]private GameObject _textObject;
 
     [SerializeField] private Image healthBarmage;
@@ -22,14 +22,18 @@ public class Health : MonoBehaviour
         healthBarmage.fillAmount = targetFillAmount;
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
+        if (currentHealth <= 0) return;
+
         TextObject currentTextObject = null; 
         currentHealth -= damage;
 
         if(currentTextObject == null)
         {
-            currentTextObject = Instantiate(_textObject, transform).GetComponentInChildren<TextObject>();
+            currentTextObject = Instantiate(_textObject, transform.parent).GetComponentInChildren<TextObject>();
+            currentTextObject.transform.position = new(transform.position.x, transform.position.y + 2, transform.position.z);
+
             currentTextObject.Init(damage);
         }
             
@@ -60,6 +64,8 @@ public class Health : MonoBehaviour
         img.color = color;
 
         model.state.room.state.model.ExitEntity(model);
+
+        yield return new WaitForSeconds(_textObject.GetComponentInChildren<TextObject>()._destroyTime);
 
         transform.DOKill(false);
         Destroy(gameObject);

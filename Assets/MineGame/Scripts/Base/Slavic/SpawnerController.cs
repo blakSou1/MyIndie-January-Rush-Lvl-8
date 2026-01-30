@@ -31,7 +31,10 @@ public class SpawnerController : MonoBehaviour
         while (IsEnemyListCompletelyEmpty())
             yield return new WaitForSeconds(.2f);
 
-        G.gameMode.NextWaveChoice();
+        if(G.gameMode.indexWave < 5)
+            G.gameMode.NextWaveChoice();
+        else
+            G.gameMode.StartCoroutine(G.gameMode.NextWave());
     }
 
     private IEnumerator SpawnInterval(Mobs mobs)

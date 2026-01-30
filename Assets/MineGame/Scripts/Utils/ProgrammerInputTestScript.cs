@@ -23,6 +23,8 @@ public class ProgrammerInputTestScript : MonoBehaviour, IService
         G.inputs.Debug._3.started += i => TogglePause();
 
         G.inputs.Debug._4.started += i => RestartCurrentScene();
+        G.inputs.Debug._5.started += i => Loss();
+        G.inputs.Debug._6.started += i => Win();
 
         Debug.Log("Controls initialized:");
         Debug.Log("1 - Debug method");
@@ -33,6 +35,15 @@ public class ProgrammerInputTestScript : MonoBehaviour, IService
 
     private void isDebug()
     {
+    }
+
+    private void Loss()
+    {
+        G.loss.Louse();
+    }
+    private void Win()
+    {
+        G.loss.Win();
     }
 
     // «¿Ã≈ƒÀ≈Õ»≈ »√–€ (Slow motion)
