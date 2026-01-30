@@ -39,6 +39,7 @@ public class AnimScillThorns : AnimActivScill
     private IEnumerator MoveUpCoroutine()
     {
         G.AudioManager.PlaySound(R.Audio.Pic, .5f);
+        transform.DOKill(false);
 
         foreach (GameObject obj in pic)
         {
@@ -56,6 +57,7 @@ public class AnimScillThorns : AnimActivScill
     private IEnumerator MoveDownCoroutine()
     {
         model.StopAllCoroutines();
+        transform.DOKill(false);
 
         foreach (GameObject obj in pic)
         {

@@ -29,5 +29,9 @@ public class RoomBase
     {
 
     }
+    public virtual void DeActivSkil()
+    {
+
+    }
 
 }

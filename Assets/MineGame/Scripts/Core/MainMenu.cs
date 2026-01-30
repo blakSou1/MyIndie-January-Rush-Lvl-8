@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
         .ToList();
 
         for (int i = 0; i < buttons.Count; i++)
-            buttons[i].transform.GetChild(0).gameObject.AddComponent<UITextSetter>().Init(buttonsText[i]);
+            buttons[i].transform.GetChild(1).gameObject.AddComponent<UITextSetter>().Init(buttonsText[i]);
 
         buttons[0].OnClick.AddListener(() => G.SceneLoader.Load("MainGame"));
     }

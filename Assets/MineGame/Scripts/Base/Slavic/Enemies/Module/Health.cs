@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ public class Health : MonoBehaviour
 
     [SerializeField] private Image healthBarmage;
     [SerializeField] private Image mob;
+
+    [HideInInspector] public Entity model;
 
     private void Start()
     {
@@ -35,9 +38,7 @@ public class Health : MonoBehaviour
 
 
         if (currentHealth <= 0)
-        {
             StartCoroutine(FadeImage(mob, 1, 0, 1.6f));
-        }
     }
     private IEnumerator FadeImage(Image img, float startAlpha, float endAlpha, float duration)
     {
@@ -58,6 +59,9 @@ public class Health : MonoBehaviour
         color.a = endAlpha;
         img.color = color;
 
+        model.state.room.state.model.ExitEntity(model);
+
+        transform.DOKill(false);
         Destroy(gameObject);
     }
 

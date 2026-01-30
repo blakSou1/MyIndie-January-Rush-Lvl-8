@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67e8d00a032a234d9f61d61fbd8224e, type: 3}
+  m_Name: fireOrenge
+  m_EditorClassIdentifier: 
+  <framerate>k__BackingField: 5
+  <frames>k__BackingField:
+  - {fileID: 1663412316, guid: 6e62ca8403215b84284101e2930d4557, type: 3}
+  - {fileID: -1583256959, guid: 6e62ca8403215b84284101e2930d4557, type: 3}
+  - {fileID: -909367511, guid: 6e62ca8403215b84284101e2930d4557, type: 3}
+  - {fileID: 457202996, guid: 6e62ca8403215b84284101e2930d4557, type: 3}
+  <framesSettings>k__BackingField: []
+  <animationOffset>k__BackingField: {x: 0, y: 0}
+  <isLoop>k__BackingField: 1

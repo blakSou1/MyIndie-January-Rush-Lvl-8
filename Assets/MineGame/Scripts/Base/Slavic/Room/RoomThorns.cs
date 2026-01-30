@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Claims;
 using UnityEngine;
 
 public class RoomThorns : RoomBase
@@ -29,7 +30,9 @@ public class RoomThorns : RoomBase
         foreach (var a in model.objects)
         {
             var corutine = model.StartCoroutine(DamageEntity(a));
-            ListAction.Add(a, corutine);
+            
+            if(!ListAction.ContainsKey(a))
+                ListAction.Add(a, corutine);
 
         }
     }
