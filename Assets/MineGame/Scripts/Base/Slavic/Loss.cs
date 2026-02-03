@@ -31,38 +31,35 @@ public class Loss : MonoBehaviour
 
         isLoss = true;
 
-        G.AudioManager.PlaySound(R.Audio.Louse, .5f);
+        G.AudioManager.PlaySound(R.Audio.Louse, 1.5f);
 
         StartCoroutine(CanvasGroupHide(0, 1, groupWin, .4f));
     }
 
     private IEnumerator CanvasGroupHide(float start, float end, CanvasGroup group, float time = .3f)
     {
+        if (group == null) yield break;
+
         group.alpha = start;
 
-        if (group.alpha == 0)
+        if (!group.gameObject.activeSelf)
             group.gameObject.SetActive(true);
-        else
-            group.gameObject.SetActive(false);
 
-        float elapsedTime = start;
+        float elapsedTime = 0;
 
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / time);
 
-            group.alpha = Mathf.Lerp(1, 0, t);
+            group.alpha = Mathf.Lerp(start, end, t);
 
             yield return null;
         }
 
         group.alpha = end;
 
-        if (group.alpha == 1)
-            group.gameObject.SetActive(true);
-        else
+        if (end == 0)
             group.gameObject.SetActive(false);
     }
-
 }

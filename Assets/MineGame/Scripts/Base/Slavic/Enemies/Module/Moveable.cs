@@ -18,15 +18,17 @@ public class MoveableBalatro : MoveableBase
         if (i == 0 || i == G.roomManager.rooms.Count || i == G.roomManager.rooms.Count - 1 || !G.roomManager.rooms[i].state.model.isRigth)
         {
             targetPosition = target;
+            transform.position = en.state.room.startPos.position;
+
             transform.localScale = def;
         }
         else
         {
             targetPosition = en.state.room.state.model.prefab.startPos.position;
 
-            transform.localPosition = target;
+            transform.position = en.state.room.endPos.position;
 
-            transform.localScale = new( -transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            transform.localScale = new( -def.x, def.y, def.z);
         }
 
 
@@ -127,7 +129,7 @@ public class MoveableBalatro : MoveableBase
 public class MoveableBase : ManagedBehaviour
 {
     public Vector3 targetPosition;
-    public Entity entity;
+    [HideInInspector] public Entity entity;
     public float maxVelocity;
 
     public virtual IEnumerator Move(Vector3 target)

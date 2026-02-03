@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -11,14 +12,35 @@ public class Choice : MonoBehaviour
     public Image item2;
     public Image item3;
 
+    public Image item1Chb;
+    public Image item2Chb;
+    public Image item3Chb;
+
     Room room1;
     Room room2;
     Room room3;
+
+    public Image baseImage;
+    Color baseImageColor;
+
+    Tween colorTween;
+    Ease easeType = Ease.InOutSine;
+    Color currentColor;
 
     void Awake()
     {
         G.choice = this;
         StartCoroutine(CanvasGroupHide(0, 0, 0));
+
+        item1.gameObject.SetActive(false);
+        item2.gameObject.SetActive(false);
+        item3.gameObject.SetActive(false);
+
+        item1Chb.gameObject.SetActive(true);
+        item2Chb.gameObject.SetActive(true);
+        item3Chb.gameObject.SetActive(true);
+
+        baseImageColor = baseImage.color;
     }
 
     public void ButtonUp(int index)
@@ -49,8 +71,60 @@ public class Choice : MonoBehaviour
         G.gameMode.StartCoroutine(G.gameMode.NextWave());
     }
 
+    public void EnterColor(int index)
+    {
+        Room room = null;
+
+        if (index == 1)
+            room = room1;
+        else if (index == 2)
+            room = room2;
+        else if (index == 3)
+            room = room3;
+        else if (index == 4)
+        {
+            colorTween?.Kill();
+
+            colorTween = baseImage.DOColor(baseImageColor, .4f)
+                .SetEase(easeType)
+                .OnStart(() => {
+                    Debug.Log($"Начало перехода к цвету комнаты {index}");
+                })
+                .OnComplete(() => {
+                    currentColor = baseImageColor;
+                    Debug.Log($"Переход к цвету комнаты {index} завершен");
+                });
+
+            return;
+        }
+
+        colorTween?.Kill();
+
+        colorTween = baseImage.DOColor(room.color, .4f)
+            .SetEase(easeType)
+            .OnStart(() => {
+                Debug.Log($"Начало перехода к цвету комнаты {index}");
+            })
+            .OnComplete(() => {
+                currentColor = room.color;
+                Debug.Log($"Переход к цвету комнаты {index} завершен");
+            });
+    }
+    public void ExitColor()
+    {
+        EnterColor(4);
+    }
+
     public void ChoiceIn(Type roomType1, Type roomType2, Type roomType3)
     {
+        item1.gameObject.SetActive(false);
+        item2.gameObject.SetActive(false);
+        item3.gameObject.SetActive(false);
+
+        item1Chb.gameObject.SetActive(true);
+        item2Chb.gameObject.SetActive(true);
+        item3Chb.gameObject.SetActive(true);
+
         room1 = Framefork.AddRoom(roomType1);
         room2 = Framefork.AddRoom(roomType2);
         room3 = Framefork.AddRoom(roomType3);
@@ -63,35 +137,37 @@ public class Choice : MonoBehaviour
         item2.sprite = room2.icon;
         item3.sprite = room3.icon;
 
+        item1Chb.sprite = room1.iconCHB;
+        item2Chb.sprite = room2.iconCHB;
+        item3Chb.sprite = room3.iconCHB;
+
         StartCoroutine(CanvasGroupHide(0, 1));
     }
 
     private IEnumerator CanvasGroupHide(float start, float end, float time = .3f)
     {
+        if (group == null) yield break;
+
         group.alpha = start;
 
-        if (group.alpha == 0)
+        if (!group.gameObject.activeSelf)
             group.gameObject.SetActive(true);
-        else
-            group.gameObject.SetActive(false);
 
-        float elapsedTime = start;
+        float elapsedTime = 0;
 
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / time);
 
-            group.alpha = Mathf.Lerp(1, 0, t);
+            group.alpha = Mathf.Lerp(start, end, t);
 
             yield return null;
         }
 
         group.alpha = end;
 
-        if (group.alpha == 1)
-            group.gameObject.SetActive(true);
-        else
+        if (end == 0)
             group.gameObject.SetActive(false);
     }
 }

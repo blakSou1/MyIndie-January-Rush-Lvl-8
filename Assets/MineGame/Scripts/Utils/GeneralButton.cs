@@ -10,13 +10,20 @@ public class GeneralButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public UnityEvent OnExit;
     public UnityEvent OnClick;
 
+    public bool isUp = false;
+
+    public Vector3 posEnter = Vector3.one * 0.7f;
+    public Vector3 posEnter2 = Vector3.one * 0.8f;
+    public Vector3 posClick = Vector3.one * 0.55f;
+    public Vector3 posClick2 = Vector3.one * 0.8f;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         //R.Audio.MouseInButton.PlayAsSoundRandomPitch(0.17f);
         Sequence mySequence = DOTween.Sequence();
         mySequence
-            .Append(GetComponent<RectTransform>().GetChild(0).DOScale(Vector3.one * 0.7f, 0.1f).SetEase(Ease.OutBack))
-            .Append(GetComponent<RectTransform>().GetChild(0).DOScale(Vector3.one * 0.8f, 0.2f).SetEase(Ease.OutBack));
+            .Append(GetComponent<RectTransform>().GetChild(0).DOScale(posEnter, 0.1f).SetEase(Ease.OutBack))
+            .Append(GetComponent<RectTransform>().GetChild(0).DOScale(posEnter2, 0.2f).SetEase(Ease.OutBack));
 
         OnEnter.Invoke();
     }
@@ -31,8 +38,8 @@ public class GeneralButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         //R.Audio.part.PlayAsSoundRandomPitch(0.15f);
         Sequence mySequence = DOTween.Sequence();
-        mySequence.Append(GetComponent<RectTransform>().GetChild(0).DOScale(Vector3.one * 0.55f, 0.1f))
-            .Append(GetComponent<RectTransform>().GetChild(0).DOScale(Vector3.one * 0.8f, 0.1f));
+        mySequence.Append(GetComponent<RectTransform>().GetChild(0).DOScale(posClick, 0.1f))
+            .Append(GetComponent<RectTransform>().GetChild(0).DOScale(posClick2, 0.1f));
         OnClick.Invoke();
     }
 

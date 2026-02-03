@@ -81,9 +81,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 25
   currentHealth: 0
-  _textObject: {fileID: 4622314223681975706, guid: eedaa31bfefa84e4e95efa88c14f7d48, type: 3}
+  _textObject: {fileID: 8213350190491135907, guid: c1849a34fd95bf14cb5e3794bb8d011b, type: 3}
   healthBarmage: {fileID: 1040584957047101440}
   mob: {fileID: 4170494597807768265}
+  model: {fileID: 0}
 --- !u!1 &6006886628854902639
 GameObject:
   m_ObjectHideFlags: 0

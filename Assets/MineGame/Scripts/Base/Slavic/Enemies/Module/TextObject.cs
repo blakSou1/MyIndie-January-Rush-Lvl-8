@@ -6,13 +6,11 @@ using UnityEngine;
 public class TextObject : MonoBehaviour
 {
     public float _destroyTime;
-    private TextMeshProUGUI _text;
-    [HideInInspector] public CanvasGroup group;
+    public TextMeshProUGUI _text;
+    public CanvasGroup group;
 
     public void Init(float damage)
     {
-        group = GetComponentInParent<CanvasGroup>();
-        _text = GetComponent<TextMeshProUGUI>();
         _text.text = damage.ToString();
 
         transform.DOLocalRotate(new Vector3(0, 0, 10 * 3), _destroyTime, RotateMode.LocalAxisAdd);

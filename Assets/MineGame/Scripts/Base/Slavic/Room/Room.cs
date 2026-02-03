@@ -12,6 +12,8 @@ public class RoomeState
 public class Room : MonoBehaviour
 {
     public Sprite icon;
+    public Sprite iconCHB;
+    public Color color;
 
     public List<Entity> objects = new();
 

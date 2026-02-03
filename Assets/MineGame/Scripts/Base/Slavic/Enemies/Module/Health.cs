@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class Health : MonoBehaviour
 {
     public int health = 10;
     [HideInInspector] public float currentHealth;
-    [SerializeField]private GameObject _textObject;
+    [SerializeField]private TextMeshProUGUI _textObject;
 
     [SerializeField] private Image healthBarmage;
     [SerializeField] private Image mob;
@@ -64,8 +65,11 @@ public class Health : MonoBehaviour
         img.color = color;
 
         model.state.room.state.model.ExitEntity(model);
+        model.state.room.objects.Remove(model);
 
-        yield return new WaitForSeconds(_textObject.GetComponentInChildren<TextObject>()._destroyTime);
+        //yield return new WaitForSeconds(_textObject.GetComponentInChildren<TextObject>()._destroyTime);
+
+        GetComponent<MoveableBase>().StopAllCoroutines();
 
         transform.DOKill(false);
         Destroy(gameObject);

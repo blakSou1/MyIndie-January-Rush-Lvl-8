@@ -246,6 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  iconCHB: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
   objects: []
   events: []
   startPos: {fileID: 8145576700648246972}
