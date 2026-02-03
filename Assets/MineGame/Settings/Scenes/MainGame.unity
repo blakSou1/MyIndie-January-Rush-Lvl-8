@@ -3095,8 +3095,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759838181}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
+  m_Alpha: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &759838184
@@ -5745,7 +5745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1229804427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7598,6 +7598,8 @@ MonoBehaviour:
   item1Chb: {fileID: 421349352}
   item2Chb: {fileID: 605096401}
   item3Chb: {fileID: 1860010644}
+  baseIconMazok: {fileID: 2076815092, guid: acbf5c94459d3f345b5a691d37099782, type: 3}
+  Mazok: {fileID: 1229804428}
   baseImage: {fileID: 1170490643}
 --- !u!1 &1491319270
 GameObject:

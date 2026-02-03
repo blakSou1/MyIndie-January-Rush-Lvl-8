@@ -20,23 +20,9 @@ public class RoomFire : RoomBase
         if (isSkill)
         {
             var corutine = model.StartCoroutine(DamageEntityPoisonous(toClaim));
+
             ListAction.Add(toClaim, corutine);
         }
-    }
-
-    public override void ExitEntity(Entity toClaim)
-    {
-        while (ListAction.TryGetValue(toClaim, out Coroutine cor))
-        {
-            G.roomManager.StopCoroutine(cor);
-            ListAction.Remove(toClaim);
-        }
-        while (ListPassiv.TryGetValue(toClaim, out Coroutine cor))
-        {
-            G.roomManager.StopCoroutine(cor);
-            ListPassiv.Remove(toClaim);
-        }
-
     }
 
     public override void ActivSkil()
@@ -47,31 +33,27 @@ public class RoomFire : RoomBase
         {
             var corutine = model.StartCoroutine(DamageEntityPoisonous(a));
 
-            if (!ListAction.ContainsKey(a))
-                ListAction.Add(a, corutine);
+            ListAction.Add(a, corutine);
         }
     }
     public override void DeActivSkil()
     {
+        Debug.Log(2222);
+
         isSkill = false;
 
-        foreach (var toClaim in model.objects)
-            while (ListAction.TryGetValue(toClaim, out Coroutine cor))
-            {
-                G.roomManager.StopCoroutine(cor);
-                ListAction.Remove(toClaim);
-            }
+        ListAction.Clear();
     }
 
     private IEnumerator DamageEntityPoisonous(Entity toClaim)
     {
-        yield return null;
-
-        while (toClaim != null)
+        while (isSkill && toClaim.state.health.currentHealth > 0)
         {
-            toClaim.state.health.Damage(damage+2);
+            Debug.Log(111);
+            toClaim.state.health.Damage(damage);
             yield return new WaitForSeconds(.3f);
         }
+        Debug.Log(444);
 
         ListAction.Remove(toClaim);
     }

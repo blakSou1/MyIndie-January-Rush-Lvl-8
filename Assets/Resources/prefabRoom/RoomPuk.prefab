@@ -440,6 +440,7 @@ MonoBehaviour:
   icon: {fileID: -773785627, guid: 0af912ce0a3f49a4fbec1f91db732c86, type: 3}
   iconCHB: {fileID: -275758627, guid: d2c2b8cdad89ec44aa3f1a6b2b24d1c5, type: 3}
   color: {r: 0.14901961, g: 0.027450982, b: 0, a: 0.7058824}
+  iconMazok: {fileID: 1894835011, guid: 73bf8c2cf20002f4a8cade831b5a0f79, type: 3}
   objects: []
   events:
   - m_PersistentCalls:

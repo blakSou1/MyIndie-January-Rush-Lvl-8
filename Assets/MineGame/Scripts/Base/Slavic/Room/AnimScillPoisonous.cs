@@ -43,10 +43,10 @@ public class AnimScillPoisonous : AnimActivScill
 
         yield return new WaitForSeconds(waitTime);
 
-        yield return StartCoroutine(FadeImage(img, 1, 0, fadeDuration));
+        yield return StartCoroutine(FadeImage(img, 1, 0, fadeDuration, true));
     }
 
-    private IEnumerator FadeImage(Image img, float startAlpha, float endAlpha, float duration)
+    private IEnumerator FadeImage(Image img, float startAlpha, float endAlpha, float duration, bool isDeack = false)
     {
         float elapsedTime = 0f;
         Color color = img.color;
@@ -63,7 +63,8 @@ public class AnimScillPoisonous : AnimActivScill
         color.a = endAlpha;
         img.color = color;
 
-        model.state.model.DeActivSkil();
+        if (isDeack)
+            model.state.model.DeActivSkil();
     }
 
 }

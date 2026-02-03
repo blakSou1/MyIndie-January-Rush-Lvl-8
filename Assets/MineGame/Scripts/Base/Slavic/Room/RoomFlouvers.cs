@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class RoomCristalis : RoomBase
+public class RoomFlouvers : RoomBase
 {
     bool isSkill = false;
+    float damage = .4f;
 
-    public RoomCristalis()
+    public RoomFlouvers()
     {
-        prefab = Framefork.Load<Room>("prefabRoom/" + "RoomCristalis");
+        prefab = Framefork.Load<Room>("prefabRoom/" + "RoomFlouvers");
         G.roomManager.roomsEntity.Add(this);
         isRigth = true;
     }
@@ -16,7 +17,7 @@ public class RoomCristalis : RoomBase
     {
         toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
 
-        var corutine = G.roomManager.StartCoroutine(NouSpeed(toClaim));
+        var corutine = G.roomManager.StartCoroutine(DamageEntityPassiv(toClaim));
         ListPassiv.Add(toClaim, corutine);
 
         if (isSkill)
@@ -30,11 +31,9 @@ public class RoomCristalis : RoomBase
 
     public override void ExitEntity(Entity toClaim)
     {
-        if (ListPassiv.TryGetValue(toClaim, out Coroutine cors))
+        if (ListPassiv.TryGetValue(toClaim, out Coroutine cor))
         {
-            G.roomManager.StopCoroutine(cors);
-            toClaim.state.moveable.maxVelocity += 5;
-
+            G.roomManager.StopCoroutine(cor);
             ListPassiv.Remove(toClaim);
         }
     }
@@ -57,11 +56,17 @@ public class RoomCristalis : RoomBase
         ListAction.Clear();
     }
 
-    private IEnumerator NouSpeed(Entity toClaim)
+    private IEnumerator DamageEntityPassiv(Entity toClaim)
     {
         yield return null;
 
-        toClaim.state.moveable.maxVelocity -= 5;
+        while (ListPassiv.ContainsKey(toClaim) && toClaim.state.health.currentHealth > 0)
+        {
+            toClaim.state.health.Damage(damage);
+            yield return new WaitForSeconds(.3f);
+        }
+
+        ListPassiv.Remove(toClaim);
     }
 
     private IEnumerator UnigilSpeed(Entity toClaim)

@@ -29,7 +29,7 @@ public class Wave2 : Wave
     {
         reward = new()
         {
-            typeof(RoomFire), typeof(RoomThorns), typeof(RoomThorns)
+            typeof(RoomFire), typeof(RoomThorns), typeof(RoomFlouvers)
         };
 
         Mobs mob = new()

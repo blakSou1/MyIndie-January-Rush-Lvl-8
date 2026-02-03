@@ -20,12 +20,14 @@ public class Choice : MonoBehaviour
     Room room2;
     Room room3;
 
+    public Sprite baseIconMazok;
+
+    public Image Mazok;
     public Image baseImage;
     Color baseImageColor;
 
     Tween colorTween;
     Ease easeType = Ease.InOutSine;
-    Color currentColor;
 
     void Awake()
     {
@@ -45,11 +47,15 @@ public class Choice : MonoBehaviour
 
     public void ButtonUp(int index)
     {
+        StartCoroutine(ButtonUps(index));
+    }
+    private IEnumerator ButtonUps(int index)
+    {
+        yield return StartCoroutine(CanvasGroupHide(1, 0));
+
         item1.sprite = null;
         item2.sprite = null;
         item3.sprite = null;
-
-        StartCoroutine(CanvasGroupHide(1, 0));
 
         RoomBase room = null;
         if (index == 1)
@@ -83,31 +89,29 @@ public class Choice : MonoBehaviour
             room = room3;
         else if (index == 4)
         {
+            Mazok.sprite = baseIconMazok;
+
             colorTween?.Kill();
 
             colorTween = baseImage.DOColor(baseImageColor, .4f)
                 .SetEase(easeType)
                 .OnStart(() => {
-                    Debug.Log($"Начало перехода к цвету комнаты {index}");
                 })
                 .OnComplete(() => {
-                    currentColor = baseImageColor;
-                    Debug.Log($"Переход к цвету комнаты {index} завершен");
                 });
 
             return;
         }
+
+        Mazok.sprite = room.iconMazok;
 
         colorTween?.Kill();
 
         colorTween = baseImage.DOColor(room.color, .4f)
             .SetEase(easeType)
             .OnStart(() => {
-                Debug.Log($"Начало перехода к цвету комнаты {index}");
             })
             .OnComplete(() => {
-                currentColor = room.color;
-                Debug.Log($"Переход к цвету комнаты {index} завершен");
             });
     }
     public void ExitColor()

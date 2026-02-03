@@ -22,13 +22,14 @@ public class RoomPoisonous : RoomBase
         if (isSkill)
         {
             corutine = model.StartCoroutine(DamageEntityPoisonous(toClaim));
+
             ListAction.Add(toClaim, corutine);
         }
     }
 
     public override void ExitEntity(Entity toClaim)
     {
-        while (ListPassiv.TryGetValue(toClaim, out Coroutine cor))
+        if (ListPassiv.TryGetValue(toClaim, out Coroutine cor))
         {
             G.roomManager.StopCoroutine(cor);
             ListPassiv.Remove(toClaim);
@@ -43,20 +44,21 @@ public class RoomPoisonous : RoomBase
         {
             var corutine = model.StartCoroutine(DamageEntityPoisonous(a));
 
-            if (!ListAction.ContainsKey(a))
-                ListAction.Add(a, corutine);
+            ListAction.Add(a, corutine);
         }
     }
     public override void DeActivSkil()
     {
         isSkill = false;
+
+        ListAction.Clear();
     }
 
     private IEnumerator DamageEntityPoisonous(Entity toClaim)
     {
         yield return null;
 
-        while (toClaim != null)
+        while (toClaim.state.health.currentHealth > 0)
         {
             toClaim.state.health.Damage((float)damage * 0.4f);
             yield return new WaitForSeconds(.3f);

@@ -639,6 +639,7 @@ MonoBehaviour:
   icon: {fileID: -743245659, guid: 0af912ce0a3f49a4fbec1f91db732c86, type: 3}
   iconCHB: {fileID: 1525584701, guid: d2c2b8cdad89ec44aa3f1a6b2b24d1c5, type: 3}
   color: {r: 0.0627451, g: 0, b: 0.0627451, a: 0.7058824}
+  iconMazok: {fileID: 1927780838, guid: 817c0170e12b07e448b66bcad91953fb, type: 3}
   objects: []
   events:
   - m_PersistentCalls:
@@ -658,7 +659,7 @@ MonoBehaviour:
   startPos: {fileID: 8145576700648246972}
   endPos: {fileID: 6444178600221164660}
   button: {fileID: 0}
-  timereset: 4
+  timereset: 4.5
 --- !u!114 &7715634954618696029
 MonoBehaviour:
   m_ObjectHideFlags: 0

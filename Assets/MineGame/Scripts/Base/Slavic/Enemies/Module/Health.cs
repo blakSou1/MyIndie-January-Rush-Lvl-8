@@ -27,23 +27,20 @@ public class Health : MonoBehaviour
     {
         if (currentHealth <= 0) return;
 
-        TextObject currentTextObject = null; 
+        TextObject currentTextObject; 
         currentHealth -= damage;
 
-        if(currentTextObject == null)
-        {
-            currentTextObject = Instantiate(_textObject, transform.parent).GetComponentInChildren<TextObject>();
-            currentTextObject.transform.position = new(transform.position.x, transform.position.y + 2, transform.position.z);
+        currentTextObject = Instantiate(_textObject, transform.parent).GetComponent<TextObject>();
+        currentTextObject.transform.position = new(transform.position.x, transform.position.y + 2, transform.position.z);
 
-            currentTextObject.Init(damage);
-        }
+        currentTextObject.Init(damage);
             
         float targetFillAmount = (float)currentHealth / (float)health;
         healthBarmage.fillAmount = targetFillAmount;
 
 
         if (currentHealth <= 0)
-            StartCoroutine(FadeImage(mob, 1, 0, 1.6f));
+            StartCoroutine(FadeImage(mob, 1, 0, .6f));
     }
     private IEnumerator FadeImage(Image img, float startAlpha, float endAlpha, float duration)
     {
@@ -64,14 +61,21 @@ public class Health : MonoBehaviour
         color.a = endAlpha;
         img.color = color;
 
-        model.state.room.state.model.ExitEntity(model);
-        model.state.room.objects.Remove(model);
+        model.state.room.Release(model);
 
-        //yield return new WaitForSeconds(_textObject.GetComponentInChildren<TextObject>()._destroyTime);
+        if(model.state.room.objects.Contains(model))
+            model.state.room.objects.Remove(model);
+
+        model.StopAllCoroutines();
+
+        model.transform.DOKill(false);
 
         GetComponent<MoveableBase>().StopAllCoroutines();
 
         transform.DOKill(false);
+        
+        yield return null;
+
         Destroy(gameObject);
     }
 

@@ -15,6 +15,8 @@ public class Room : MonoBehaviour
     public Sprite iconCHB;
     public Color color;
 
+    public Sprite iconMazok;
+
     public List<Entity> objects = new();
 
     public List<UnityEvent> events;
@@ -30,6 +32,7 @@ public class Room : MonoBehaviour
 
     public float timereset = 2f;
     private bool reset = true;
+
     public void SetState(RoomeState room)
     {
         state = room;

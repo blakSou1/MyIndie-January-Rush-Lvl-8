@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnimScillCristalis : AnimActivScill
+public class AnimScillFlouvers : AnimActivScill
 {
     public List<Image> images;
 
@@ -27,7 +27,7 @@ public class AnimScillCristalis : AnimActivScill
 
     private IEnumerator ShowOffObjects()
     {
-        G.AudioManager.PlaySound(R.Audio.Cristal, .5f);
+        G.AudioManager.PlaySound(R.Audio.SadoMazo, .5f);
 
         foreach (Image img in imagesHide)
         {

@@ -60,6 +60,8 @@ public class AnimScillPuk : AnimActivScill
 
         Sequence shotSequence = DOTween.Sequence();
 
+        G.AudioManager.PlaySound(R.Audio.Cortik, .5f);
+
         shotSequence
             .Append(arrow.transform.DOMove(endPosition, shotDuration)
                 .SetEase(Ease.OutQuad))
