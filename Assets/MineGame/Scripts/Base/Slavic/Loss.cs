@@ -19,6 +19,7 @@ public class Loss : MonoBehaviour
     {
         if (isLoss) return;
 
+        StartCoroutine(G.choice.CanvasGroupHide(0,0));
         isLoss = true;
 
         G.AudioManager.PlaySound(R.Audio.Louse, .5f);

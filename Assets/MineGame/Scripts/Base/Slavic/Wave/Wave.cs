@@ -10,13 +10,13 @@ public class Wave1 : Wave
         {
             type = typeof(BasicEnemies),
             count = 3,
-            startSpawnTime = 3f,
+            startSpawnTime = 2f,
             spawnDuration = 6f,
         };
 
         reward = new()
         {
-            typeof(RoomPoisonous), typeof(RoomFire), typeof(RoomThorns)
+            typeof(RoomPoisonous), typeof(RoomFire), typeof(RoomPotolok)
         };
 
         mobs.Add(mob);
@@ -35,9 +35,9 @@ public class Wave2 : Wave
         Mobs mob = new()
         {
             type = typeof(BasicEnemies),
-            count = 5,
+            count = 9,
             startSpawnTime = 2f,
-            spawnDuration = 12f,
+            spawnDuration = 22f,
         };
         mobs.Add(mob);
 
@@ -46,7 +46,16 @@ public class Wave2 : Wave
             type = typeof(HumanoidBlue),
             count = 3,
             startSpawnTime = 4.5f,
-            spawnInterval = 2.7f,
+            spawnInterval = 3.7f,
+        };
+        mobs.Add(mob);
+
+        mob = new()
+        {
+            type = typeof(HumanoidBlue),
+            count = 3,
+            startSpawnTime = 5.5f,
+            spawnInterval = 4.7f,
         };
         mobs.Add(mob);
 
@@ -59,7 +68,7 @@ public class Wave3 : Wave
     {
         reward = new()
         {
-            typeof(RoomPoisonous), typeof(RoomCristalis), typeof(RoomFire)
+            typeof(RoomPoisonous), typeof(RoomWater), typeof(RoomFire)
         };
 
         Mobs mob = new()
@@ -67,7 +76,25 @@ public class Wave3 : Wave
             type = typeof(HumanoidBlue),
             count = 14,
             startSpawnTime = 1f,
-            spawnDuration = 17f,
+            spawnDuration = 27f,
+        };
+        mobs.Add(mob);
+
+        mob = new()
+        {
+            type = typeof(HumanoidBlue),
+            count = 8,
+            startSpawnTime = 8f,
+            spawnDuration = 11f,
+        };
+        mobs.Add(mob);
+
+        mob = new()
+        {
+            type = typeof(HumanoidOrange),
+            count = 4,
+            startSpawnTime = 3f,
+            spawnDuration = 18f,
         };
         mobs.Add(mob);
 
@@ -76,7 +103,7 @@ public class Wave3 : Wave
             type = typeof(Asasin),
             count = 4,
             startSpawnTime = 4.5f,
-            spawnInterval = 3.7f,
+            spawnInterval = 4.7f,
         };
         mobs.Add(mob);
 
@@ -97,7 +124,7 @@ public class Wave4 : Wave
             type = typeof(BasicEnemies),
             count = 14,
             startSpawnTime = 2f,
-            spawnDuration = 12f,
+            spawnDuration = 19f,
         };
         mobs.Add(mob);
 
@@ -106,7 +133,7 @@ public class Wave4 : Wave
             type = typeof(Asasin),
             count = 4,
             startSpawnTime = 4.5f,
-            spawnInterval = 3.7f,
+            spawnInterval = 4.7f,
         };
         mobs.Add(mob);
 
@@ -114,8 +141,17 @@ public class Wave4 : Wave
         {
             type = typeof(Tank),
             count = 1,
-            startSpawnTime = 7f,
+            startSpawnTime = 13f,
             spawnInterval = 1f,
+        };
+        mobs.Add(mob);
+
+        mob = new()
+        {
+            type = typeof(Tank),
+            count = 2,
+            startSpawnTime = 19f,
+            spawnInterval = 8f,
         };
         mobs.Add(mob);
 
@@ -128,7 +164,7 @@ public class Wave5 : Wave
     {
         Mobs mob = new()
         {
-            type = typeof(BasicEnemies),
+            type = typeof(HumanoidBlue),
             count = 6,
             startSpawnTime = 2f,
             spawnInterval = 2f,
@@ -138,7 +174,7 @@ public class Wave5 : Wave
         mob = new()
         {
             type = typeof(Asasin),
-            count = 4,
+            count = 8,
             startSpawnTime = 4.5f,
             spawnInterval = 3.7f,
         };
@@ -147,7 +183,7 @@ public class Wave5 : Wave
         mob = new()
         {
             type = typeof(Tank),
-            count = 3,
+            count = 5,
             startSpawnTime = 7f,
             spawnInterval = 4f,
         };
@@ -155,7 +191,7 @@ public class Wave5 : Wave
         {
             type = typeof(Boss),
             count = 1,
-            startSpawnTime = 12f,
+            startSpawnTime = 19f,
             spawnInterval = 1f,
         };
 

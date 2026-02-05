@@ -1,42 +1,27 @@
 using System.Collections;
 using UnityEngine;
 
-public class RoomCristalis : RoomBase
+public class RoomWater : RoomBase
 {
     bool isSkill = false;
 
-    public RoomCristalis()
+    public RoomWater()
     {
-        prefab = Framefork.Load<Room>("prefabRoom/" + "RoomCristalis");
+        prefab = Framefork.Load<Room>("prefabRoom/" + "RoomWater");
         G.roomManager.roomsEntity.Add(this);
-        isRigth = true;
     }
 
     public override void EnterEntity(Entity toClaim)
     {
         toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
 
-        var corutine = G.roomManager.StartCoroutine(NouSpeed(toClaim));
-        ListPassiv.Add(toClaim, corutine);
-
         if (isSkill)
         {
-            corutine = model.StartCoroutine(UnigilSpeed(toClaim));
+            var corutine = model.StartCoroutine(UnigilSpeed(toClaim));
 
             ListAction.Add(toClaim, corutine);
         }
 
-    }
-
-    public override void ExitEntity(Entity toClaim)
-    {
-        if (ListPassiv.TryGetValue(toClaim, out Coroutine cors))
-        {
-            G.roomManager.StopCoroutine(cors);
-            toClaim.state.moveable.maxVelocity += 5;
-
-            ListPassiv.Remove(toClaim);
-        }
     }
 
     public override void ActivSkil()
@@ -58,25 +43,19 @@ public class RoomCristalis : RoomBase
         ListAction.Clear();
     }
 
-    private IEnumerator NouSpeed(Entity toClaim)
-    {
-        yield return null;
-
-        toClaim.state.moveable.maxVelocity -= 5;
-    }
-
     private IEnumerator UnigilSpeed(Entity toClaim)
     {
         float speed = toClaim.state.moveable.maxVelocity;
 
-        yield return null;
+        toClaim.state.moveable.maxVelocity = 30;
 
-        toClaim.state.moveable.maxVelocity = 0;
+        toClaim.StopAllCoroutines();
 
-        yield return new WaitForSeconds(4f);
+        yield return toClaim.StartCoroutine(toClaim.state.moveable.MoveV(prefab.startPos.position));
 
         toClaim.state.moveable.maxVelocity = speed;
 
+        toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
         ListAction.Remove(toClaim);
     }
 }

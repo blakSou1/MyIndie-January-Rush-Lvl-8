@@ -70,8 +70,6 @@ public class Health : MonoBehaviour
 
         model.transform.DOKill(false);
 
-        GetComponent<MoveableBase>().StopAllCoroutines();
-
         transform.DOKill(false);
         
         yield return null;

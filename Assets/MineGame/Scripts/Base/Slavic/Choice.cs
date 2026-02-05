@@ -148,7 +148,7 @@ public class Choice : MonoBehaviour
         StartCoroutine(CanvasGroupHide(0, 1));
     }
 
-    private IEnumerator CanvasGroupHide(float start, float end, float time = .3f)
+    public IEnumerator CanvasGroupHide(float start, float end, float time = .3f)
     {
         if (group == null) yield break;
 

@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d46515938708c4f8a348229a261a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 40
+  health: 35
   currentHealth: 0
   _textObject: {fileID: 8213350190491135907, guid: c1849a34fd95bf14cb5e3794bb8d011b, type: 3}
   healthBarmage: {fileID: 1040584957047101440}

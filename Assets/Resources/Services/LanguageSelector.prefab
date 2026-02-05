@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2006411935016030521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4789779796884340208}
+  - component: {fileID: 5406653572972461894}
+  - component: {fileID: 8060052948724933317}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4789779796884340208
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006411935016030521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4882883462710900390}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5406653572972461894
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006411935016030521}
+  m_CullTransparentMesh: 1
+--- !u!114 &8060052948724933317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006411935016030521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5686275}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2066289815173819085
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +676,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4789779796884340208}
   - {fileID: 7429047521583389386}
   - {fileID: 7270494056167480255}
   - {fileID: 5899668225557621198}
@@ -784,7 +860,7 @@ PrefabInstance:
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5647034550741987071, guid: 2e2048ca751387b4daeb4b609940e9de, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -807,19 +883,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_RaycastPadding.w
-      value: 13.11
+      value: 61.9
       objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_RaycastPadding.x
-      value: -87.1
+      value: -199.14
       objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_RaycastPadding.y
-      value: 8.62
+      value: 94
       objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_RaycastPadding.z
-      value: -82.93
+      value: -208.17
       objectReference: {fileID: 0}
     - target: {fileID: 7156521104503562509, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_Pivot.x
@@ -1049,7 +1125,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7913421476121731940, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
+    - {fileID: 8819773475731733136, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
     m_RemovedGameObjects:
     - {fileID: 74956763714262028, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
     m_AddedGameObjects:
@@ -1094,7 +1172,7 @@ PrefabInstance:
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4199556396840203229, guid: 2e2048ca751387b4daeb4b609940e9de, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -1117,19 +1195,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_RaycastPadding.w
-      value: 10.46
+      value: 61.9
       objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_RaycastPadding.x
-      value: -86.41
+      value: -199.14
       objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_RaycastPadding.y
-      value: 13.81
+      value: 94
       objectReference: {fileID: 0}
     - target: {fileID: 5085389702308510610, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_RaycastPadding.z
-      value: -82.41
+      value: -208.17
       objectReference: {fileID: 0}
     - target: {fileID: 7156521104503562509, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
       propertyPath: m_Pivot.x
@@ -1359,7 +1437,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7913421476121731940, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
+    - {fileID: 8819773475731733136, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
     m_RemovedGameObjects:
     - {fileID: 74956763714262028, guid: 1a3e87d63cc9b9145a0b697b94d3429b, type: 3}
     m_AddedGameObjects:

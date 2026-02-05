@@ -7,7 +7,12 @@ public class MoveableBalatro : MoveableBase
     public float interval = .3f;
     Vector3 def = new(1, 1, 1);
     Entity en;
+    Entity model;
 
+    private void Start()
+    {
+        model = GetComponent<Entity>();
+    }
     public override IEnumerator Move(Vector3 target)
     {
         if(en == null)
@@ -48,16 +53,40 @@ public class MoveableBalatro : MoveableBase
 
         int index = G.roomManager.rooms.IndexOf(entity.state.room);
 
-        if(index + 1 < G.roomManager.rooms.Count)
+        if(index + 1 < G.roomManager.rooms.Count && model.state.health.currentHealth > 0)
         {
             if (G.roomManager.rooms[index + 1] == null)
                 G.roomManager.rooms[G.roomManager.rooms.Count - 1].AddEntity(entity);
             else
                 G.roomManager.rooms[index + 1].AddEntity(entity);
         }
-        else if (index + 1 >= G.roomManager.rooms.Count)
+        else if (index + 1 >= G.roomManager.rooms.Count && model.state.health.currentHealth > 0)
             G.roomManager.rooms[index].state.model.ExitEntity(entity);
     }
+
+    public override IEnumerator MoveV(Vector3 target)
+    {
+        if (en == null)
+            en = GetComponent<Entity>();
+
+        targetPosition = target;
+
+        int i = G.roomManager.rooms.IndexOf(en.state.room);
+
+        float arrivalThreshold = 1f;
+
+        while (Vector2.Distance(transform.localPosition, target) > arrivalThreshold)
+        {
+            float realDt = Mathf.Clamp(Time.smoothDeltaTime, 1 / 50f, 1 / 100f);
+
+            float expTimeXY = Mathf.Exp(-50 * realDt);
+
+            MoveXY(realDt, expTimeXY);
+
+            yield return null;
+        }
+    }
+
 
     private void MoveXY(float dt, float expTimeXY)
     {
@@ -133,6 +162,10 @@ public class MoveableBase : ManagedBehaviour
     public float maxVelocity;
 
     public virtual IEnumerator Move(Vector3 target)
+    {
+        return null;
+    }
+    public virtual IEnumerator MoveV(Vector3 target)
     {
         return null;
     }

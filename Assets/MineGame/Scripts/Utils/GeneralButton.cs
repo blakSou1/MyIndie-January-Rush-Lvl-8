@@ -17,6 +17,8 @@ public class GeneralButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public Vector3 posClick = Vector3.one * 0.55f;
     public Vector3 posClick2 = Vector3.one * 0.8f;
 
+    public bool interactable = true;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         //R.Audio.MouseInButton.PlayAsSoundRandomPitch(0.17f);
@@ -36,6 +38,8 @@ public class GeneralButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!interactable) return;
+
         //R.Audio.part.PlayAsSoundRandomPitch(0.15f);
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(GetComponent<RectTransform>().GetChild(0).DOScale(posClick, 0.1f))

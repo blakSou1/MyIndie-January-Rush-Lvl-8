@@ -94,10 +94,12 @@ public static partial class R
         public static AudioClip HOVER;
         public static AudioClip killMain;
         public static AudioClip lose;
+        public static AudioClip Lustr;
         public static AudioClip Menu321;
         public static AudioClip Pic;
         public static AudioClip poisonous;
         public static AudioClip SadoMazo;
+        public static AudioClip water;
     }
 
     public static void InitAudio()
@@ -191,9 +193,11 @@ public static partial class R
         Audio.HOVER = Resources.Load<AudioClip>("Audio/Petroy/HOVER");
         Audio.killMain = Resources.Load<AudioClip>("Audio/Petroy/killMain");
         Audio.lose = Resources.Load<AudioClip>("Audio/Petroy/lose");
+        Audio.Lustr = Resources.Load<AudioClip>("Audio/Petroy/Lustr");
         Audio.Menu321 = Resources.Load<AudioClip>("Audio/Petroy/Menu321");
         Audio.Pic = Resources.Load<AudioClip>("Audio/Petroy/Pic");
         Audio.poisonous = Resources.Load<AudioClip>("Audio/Petroy/poisonous");
         Audio.SadoMazo = Resources.Load<AudioClip>("Audio/Petroy/SadoMazo");
+        Audio.water = Resources.Load<AudioClip>("Audio/Petroy/water");
     }
 }

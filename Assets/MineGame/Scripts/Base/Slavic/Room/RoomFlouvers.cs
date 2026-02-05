@@ -46,7 +46,8 @@ public class RoomFlouvers : RoomBase
         {
             var corutine = model.StartCoroutine(UnigilSpeed(a));
 
-            ListAction.Add(a, corutine);
+            if (!ListAction.ContainsKey(a))
+                ListAction.Add(a, corutine);
         }
     }
     public override void DeActivSkil()
@@ -77,7 +78,7 @@ public class RoomFlouvers : RoomBase
 
         toClaim.state.moveable.maxVelocity = 0;
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
 
         toClaim.state.moveable.maxVelocity = speed;
 

@@ -308,7 +308,7 @@ MonoBehaviour:
   startPos: {fileID: 8145576700648246972}
   endPos: {fileID: 6444178600221164660}
   button: {fileID: 0}
-  timereset: 2
+  timereset: 5
 --- !u!114 &9181763654462359271
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Claims;
 using UnityEngine;
 
 public class RoomThorns : RoomBase
@@ -16,25 +17,18 @@ public class RoomThorns : RoomBase
     public override void EnterEntity(Entity toClaim)
     {
         toClaim.StartCoroutine(toClaim.state.moveable.Move(prefab.endPos.position));
-
-        if (isSkill)
-        {
-            var corutine = model.StartCoroutine(DamageEntity(toClaim));
-            ListAction.Add(toClaim, corutine);
-        }
-
+    }
+    public override void ExitEntity(Entity toClaim)
+    {
+        if (ListAction.ContainsKey(toClaim))
+            ListAction.Remove(toClaim);
     }
 
     public override void ActivSkil()
     {
         isSkill = true;
 
-        foreach (var a in model.objects)
-        {
-            var corutine = model.StartCoroutine(DamageEntity(a));
-            
-            ListAction.Add(a, corutine);
-        }
+        model.StartCoroutine(DamageEntity());
     }
     public override void DeActivSkil()
     {
@@ -43,13 +37,15 @@ public class RoomThorns : RoomBase
         ListAction.Clear();
     }
 
-    private IEnumerator DamageEntity(Entity toClaim)
+    private IEnumerator DamageEntity()
     {
         yield return null;
 
-        while (isSkill && toClaim.state.health.currentHealth > 0)
+        while (isSkill)
         {
-            toClaim.state.health.Damage(damage);
+            foreach (var a in model.objects)
+                a.state.health.Damage(damage);
+
             yield return new WaitForSeconds(.3f);
         }
     }

@@ -1,32 +1,31 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnimScillFlouvers : AnimActivScill
+public class AnimScillWater : AnimActivScill
 {
-    public List<Image> images;
+    private List<Vector3> startPos = new();
+    private List<Sequence> hitSequence = new();
+
+    public List<Image> imagesHide;
     public float moveHeight = 2f;
     public float moveDuration = 1f;
-    public float waitTime = 2f;
-    public float fadeDuration = 0.2f; // время затухания/появления
+    public float fadeDuration = 0.2f;
+
+    public float finalAlpha = .3f;
 
     private Dictionary<Image, Color> originalColors = new();
 
-    public override void Activ()
-    {
-        StopAllCoroutines();
-        StartCoroutine(ShowOffObjects());
-    }
-
     private IEnumerator ShowOffObjects()
     {
-        G.AudioManager.PlaySound(R.Audio.poisonous, .5f);
+        G.AudioManager.PlaySound(R.Audio.water, .5f);
 
-        foreach (Image img in images)
+        foreach (Image img in imagesHide)
         {
-            if (img == null || !img.gameObject.activeInHierarchy)
-                continue;
+            if (!img.gameObject.activeInHierarchy)
+                img.gameObject.SetActive(true);
 
             StartCoroutine(AnimateImage(img));
         }
@@ -39,11 +38,11 @@ public class AnimScillFlouvers : AnimActivScill
         Color originalColor = originalColors.ContainsKey(img) ?
             originalColors[img] : img.color;
 
-        yield return StartCoroutine(FadeImage(img, 0, 1, fadeDuration));
+        yield return StartCoroutine(FadeImage(img, 0, finalAlpha, fadeDuration));
 
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(2.5f);
 
-        yield return StartCoroutine(FadeImage(img, 1, 0, fadeDuration, true));
+        yield return StartCoroutine(FadeImage(img, finalAlpha, 0, fadeDuration, true));
     }
 
     private IEnumerator FadeImage(Image img, float startAlpha, float endAlpha, float duration, bool isDeack = false)
@@ -67,4 +66,20 @@ public class AnimScillFlouvers : AnimActivScill
             model.state.model.DeActivSkil();
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < imagesHide.Count; i++)
+        {
+            startPos.Add(imagesHide[i].transform.localPosition);
+
+            hitSequence.Add(DOTween.Sequence());
+        }
+    }
+
+    public override void Activ()
+    {
+        StopAllCoroutines();
+
+        StartCoroutine(ShowOffObjects());
+    }
 }

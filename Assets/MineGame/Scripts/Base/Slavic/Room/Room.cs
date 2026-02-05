@@ -26,7 +26,7 @@ public class Room : MonoBehaviour
 
     private AnimActivScill skillAnim;
 
-    [HideInInspector] public Button button;
+    [HideInInspector] public GeneralButton button;
 
     public RoomeState state;
 
@@ -78,7 +78,7 @@ public class Room : MonoBehaviour
     }
     private IEnumerator SkilButtonResetVisual()
     {
-        Image im = button.GetComponent<Image>();
+        Image im = button.transform.GetChild(0).GetComponent<Image>();
 
         float time = 0;
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RoomPoisonous : RoomBase
 {
-    int damage = 1;
+    float damage = .7f;
     bool isSkill = false;
 
     public RoomPoisonous()
@@ -44,7 +44,8 @@ public class RoomPoisonous : RoomBase
         {
             var corutine = model.StartCoroutine(DamageEntityPoisonous(a));
 
-            ListAction.Add(a, corutine);
+            if (!ListAction.ContainsKey(a))
+                ListAction.Add(a, corutine);
         }
     }
     public override void DeActivSkil()
@@ -60,8 +61,8 @@ public class RoomPoisonous : RoomBase
 
         while (toClaim.state.health.currentHealth > 0)
         {
-            toClaim.state.health.Damage((float)damage * 0.4f);
-            yield return new WaitForSeconds(.3f);
+            toClaim.state.health.Damage((float)damage * 0.8f);
+            yield return new WaitForSeconds(.6f);
         }
     }
 
@@ -72,7 +73,7 @@ public class RoomPoisonous : RoomBase
         while (ListPassiv.ContainsKey(toClaim) && toClaim.state.health.currentHealth > 0)
         {
             toClaim.state.health.Damage(damage);
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(.5f);
         }
 
         ListPassiv.Remove(toClaim);

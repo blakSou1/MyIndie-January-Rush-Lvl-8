@@ -10,7 +10,7 @@ public class RoomManager : MonoBehaviour
     public List<RoomBase> roomsEntity = new();
 
     public List<Transform> camera = new();
-    public List<Button> skilButton = new();
+    public List<GeneralButton> skilButton = new();
 
     [HideInInspector] public int indexCamera = 0;
 
@@ -22,7 +22,7 @@ public class RoomManager : MonoBehaviour
         G.roomManager = this;
         foreach (var i in skilButton)
         {
-            Image im = i.GetComponent<Image>();
+            Image im = i.transform.GetChild(0).GetComponent<Image>();
             Color color = im.color;
 
             color.a = 0;
@@ -61,23 +61,23 @@ public class RoomManager : MonoBehaviour
 
         rooms[index] = room;
     }
-    private void SubscribeButtonToEvents(Button button, List<UnityEvent> events = null)
+    private void SubscribeButtonToEvents(GeneralButton button, List<UnityEvent> events = null)
     {
         if(events.Count > 0)
         {
-            Image im = button.GetComponent<Image>();
+            Image im = button.transform.GetChild(0).GetComponent<Image>();
             Color color = im.color;
 
             color.a = 1;
             im.color = color;
         }
 
-        button.onClick.RemoveAllListeners();
+        button.OnClick.RemoveAllListeners();
 
         foreach (UnityEvent unityEvent in events)
         {
             if (unityEvent != null)
-                button.onClick.AddListener(() => unityEvent.Invoke());
+                button.OnClick.AddListener(() => unityEvent.Invoke());
         }
     }
 }
